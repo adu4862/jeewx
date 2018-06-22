@@ -10,42 +10,96 @@
     <link rel="stylesheet" type="text/css" href="http://my-photos.changs1992.cn/easyui.css">
     <link rel="stylesheet" type="text/css" href="http://my-photos.changs1992.cn/main.css">
     <script src="http://my-photos.changs1992.cn/jquery.min.js"></script>
-    <script type="text/javascript" src="http://my-photos.changs1992.cn/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="http://my-photos.changs1992.cn/easyui-lang-zh_CN.js"></script>
-    <script src="http://my-photos.changs1992.cn/sea.js"></script>
-    <script type="text/javascript">
-
-        var CONTEXT_PATH = '/control';
-        var CONTEXT_URL = 'http://10.0.2.12:80/control/';
-        var i18n_language = 'zh_CN';
-        var DLS_URL = "http://10.0.2.12:8008/dls/download";
-        var IS_CCE = "1";
-        var USER_TYPE = "6";
-
-        seajs.config({
-            base: "http://10.0.2.12:80/control/js/module/",
-            preload: ["formatter"]
-        });
-
-        if (i18n_language == "") {
-            i18n_language = "zh_CN";
-        }
-        seajs.use(["lang/" + i18n_language, "formatter", "dialog", "page.condition"]);
-    </script>
+    <%--<script type="text/javascript" src="http://my-photos.changs1992.cn/jquery.easyui.min.js"></script>--%>
+    <%--<script type="text/javascript" src="http://my-photos.changs1992.cn/easyui-lang-zh_CN.js"></script>--%>
+    <%--<script src="http://my-photos.changs1992.cn/sea.js"></script>--%>
 
 
 </head>
 <body class="m-innerbody easyui-layout layout panel-noscroll">
 <header>
 </header>
-<div hidden class="panel window panel-htop" style="display: block; width: 500px; left: 525px; top: 477px; z-index: 9008;">
+<div class="panel window panel-htop" id="windowForInsert"
+     style="display: block; width: 500px; left: 525px; top: 100px; z-index: 9008; display: none">
     <div class="panel-header panel-header-noborder window-header" style="width: 480px;">
         <div class="panel-title">修改账号信息</div>
         <div class="panel-tool"><a href="javascript:;" class="panel-tool-close"></a></div>
     </div>
     <div id="dialog" class="m-iformbox panel-body panel-body-noborder window-body" title=""
-         style="width: 500px; height: 360px;">
-        <iframe src="${frameUrl}"></iframe>
+         style="width: 500px; height: 660px;">
+
+        <div class="m-iform">
+            <div class="iform-inner">
+                <form id="modifyAccountForm" method="post">
+                    <table class="m-form single-col" style=" height: 460px;width:400px;">
+
+                        <tr>
+                            <th><label>课程名:</label></th>
+                            <td><input class="easyui-textbox" name="loginEmail" style="height:26px; width:100%;"
+                                       data-options="validType:{email:null,maxLength:[32]},tipPosition:'bottom'"></td>
+                        </tr>
+                        <tr>
+                            <th><label>年级:</label></th>
+                            <td><input class="easyui-textbox" name="loginMobile" style="height:26px; width:100%;"
+                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                        </tr>
+                        <tr>
+                            <th><label>时间:</label></th>
+                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
+                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                        </tr>
+                        <tr>
+                            <th><label>教室:</label></th>
+                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
+                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                        </tr>
+                        <tr>
+                            <th><label>老师:</label></th>
+                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
+                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                        </tr>
+                        <tr>
+                            <th><label>学费:</label></th>
+                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
+                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                        </tr>
+                        <tr>
+                            <th><label>预招人数:</label></th>
+                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
+                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                        </tr>
+                        <tr>
+                            <th><label>状态:</label></th>
+                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
+                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                        </tr>
+                        <tr>
+                            <th><label>宣传图:</label></th>
+                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
+                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                        </tr>
+                        <tr>
+                            <th><label>报名须知:</label></th>
+                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
+                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                        </tr>
+                        <tr>
+                            <th><label>详情介绍:</label></th>
+                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
+                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                        </tr>
+                    </table>
+
+                    <%--<input type="hidden" name="userType">--%>
+                    <%--<input type="hidden" name="userId">--%>
+                </form>
+                <div class="ifrom-btns">
+                    <a class="u-btn blue btn_save" href="javascript:void(0);" onclick="insertCourse()">保存</a>
+                    <a class="u-btn white btn_cancel" href="javascript:void(0);" onclick="insertCourse()">取消</a>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -178,7 +232,8 @@
 
                         <a id="modify_id" class="u-toolbtn"><i class="ico ico-modify"></i>修改课程</a>
 
-                        <a id="insert_id" class="u-toolbtn"><i class="ico ico-modify"></i>添加课程</a>
+                        <a id="insert_id" class="u-toolbtn" href="javascript:void(0);" onclick="insertCourse()"><i
+                                class="ico ico-modify"></i>添加课程</a>
                         <a id="delete_id" class="u-toolbtn"><i class="ico ico-modify"></i>删除课程</a>
                     </div>
                     <div class="datagrid-view" style="width: 1600px; height: 952px;">
@@ -209,7 +264,8 @@
                                                 <div class="datagrid-header-check"><input type="checkbox"></div>
                                             </td>
                                             <td field="userId">
-                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName"><span>课程ID</span><span
+                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName">
+                                                    <span>课程ID</span><span
                                                         class="datagrid-sort-icon"></span></div>
                                             </td>
                                             <td field="realName">
@@ -221,7 +277,8 @@
                                                     <span>年级</span><span class="datagrid-sort-icon"></span></div>
                                             </td>
                                             <td field="orgName" class="">
-                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName"><span>时间</span><span
+                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName">
+                                                    <span>时间</span><span
                                                         class="datagrid-sort-icon"></span></div>
                                             </td>
                                             <td field="userTypeName" class="">
@@ -271,69 +328,78 @@
                                 <table class="datagrid-btable" cellspacing="0" cellpadding="0" border="0">
                                     <tbody>
                                     <c:forEach items="${courseList}" var="user">
-                                    <tr id="datagrid-row-r1-2-0" datagrid-row-index="0" class="datagrid-row">
-                                        <td field="ck">
-                                            <div style="" class="datagrid-cell-check"><input type="checkbox" name="ck"
-                                                                                             value=""></div>
-                                        </td>
-                                        <td field="course_id">
-                                            <div style="height:auto;" class="datagrid-cell datagrid-cell-c1-loginName">
-                                                <span title="DYDEV01600000000000">${user.course_id}</span></div>
-                                        </td>
-                                        <td field="subject">
-                                            <div style="height:auto;" class="datagrid-cell datagrid-cell-c1-loginName">
-                                                <span title="DYDEV01600000000000">${user.subject}</span></div>
-                                        </td>
-                                        <td field="class_name">
-                                            <div style="height:auto;" class="datagrid-cell datagrid-cell-c1-loginName">
-                                                <span title="js001">${user.class_name}</span></div>
-                                        </td>
-                                        <td field="time">
-                                            <div style="height:auto;" class="datagrid-cell datagrid-cell-c1-loginName">
-                                                <span title="js001">${user.time}</span></div>
-                                        </td>
-                                        <td field="classroom">
-                                            <div style="height:auto;" class="datagrid-cell datagrid-cell-c1-loginName">
-                                                <span title="大洋学校">${user.classroom}</span></div>
-                                        </td>
-                                        <td field="age">
-                                            <div style="height:auto;"
-                                                 class="datagrid-cell datagrid-cell-c1-loginName"><span
-                                                    title="教师">${user.age}</span></div>
-                                        </td>
-                                        <td field="teacher">
-                                            <div style="height:auto;" class="datagrid-cell datagrid-cell-c1-loginName">
-                                                <span title="正常">${user.teacher}</span></div>
-                                        </td>
-                                        <td field="cost">
-                                            <div style="height:auto;" class="datagrid-cell datagrid-cell-c1-loginName">
-                                                <span title="">${user.cost}</span></div>
-                                        </td>
-                                        <td field="number">
-                                            <div style="height:auto;"
-                                                 class="datagrid-cell datagrid-cell-c1-loginName"><span
-                                                    title="">${user.number}</span></div>
-                                        </td>
-                                        <td field="status">
-                                            <div style="height:auto;" class="datagrid-cell datagrid-cell-c1-loginName">
-                                                <span title="否">${user.status}</span></div>
-                                        </td>
-                                        <td field="iamge_url">
-                                            <div style="height:auto;"
-                                                 class="datagrid-cell datagrid-cell-c1-loginName"><span
-                                                    title="2018-06-21 13:51:32">${user.iamge_url}</span></div>
-                                        </td>
-                                        <td field="information">
-                                            <div style="height:auto;"
-                                                 class="datagrid-cell datagrid-cell-c1-loginName"><span
-                                                    title="2018-06-21 11:50:07">${user.information}</span></div>
-                                        </td>
-                                        <td field="details">
-                                            <div style="height:auto;"
-                                                 class="datagrid-cell datagrid-cell-c1-loginName"><span
-                                                    title="2018-06-06 14:17:05">${user.details}</span></div>
-                                        </td>
-                                    </tr>
+                                        <tr id="datagrid-row-r1-2-0" datagrid-row-index="0" class="datagrid-row">
+                                            <td field="ck">
+                                                <div style="" class="datagrid-cell-check"><input type="checkbox"
+                                                                                                 name="ck"
+                                                                                                 value=""></div>
+                                            </td>
+                                            <td field="course_id">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName">
+                                                    <span title="DYDEV01600000000000">${user.course_id}</span></div>
+                                            </td>
+                                            <td field="subject">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName">
+                                                    <span title="DYDEV01600000000000">${user.subject}</span></div>
+                                            </td>
+                                            <td field="class_name">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName">
+                                                    <span title="js001">${user.class_name}</span></div>
+                                            </td>
+                                            <td field="time">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName">
+                                                    <span title="js001">${user.time}</span></div>
+                                            </td>
+                                            <td field="classroom">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName">
+                                                    <span title="大洋学校">${user.classroom}</span></div>
+                                            </td>
+                                            <td field="age">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName"><span
+                                                        title="教师">${user.age}</span></div>
+                                            </td>
+                                            <td field="teacher">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName">
+                                                    <span title="正常">${user.teacher}</span></div>
+                                            </td>
+                                            <td field="cost">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName">
+                                                    <span title="">${user.cost}</span></div>
+                                            </td>
+                                            <td field="number">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName"><span
+                                                        title="">${user.number}</span></div>
+                                            </td>
+                                            <td field="status">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName">
+                                                    <span title="否">${user.status}</span></div>
+                                            </td>
+                                            <td field="iamge_url">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName"><span
+                                                        title="2018-06-21 13:51:32">${user.iamge_url}</span></div>
+                                            </td>
+                                            <td field="information">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName"><span
+                                                        title="2018-06-21 11:50:07">${user.information}</span></div>
+                                            </td>
+                                            <td field="details">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName"><span
+                                                        title="2018-06-06 14:17:05">${user.details}</span></div>
+                                            </td>
+                                        </tr>
                                     </c:forEach>
                                     </tbody>
                                 </table>
@@ -343,7 +409,7 @@
                             </div>
                         </div>
                         <table id="account-Manager-list" class="easyui-datagrid datagrid-f" title=""
-                               data-options="border:true,emptyMsg:'暂无数据',fit:true,rownumbers:false,pagination:true,pageSize: 20,url:'http://10.0.2.12:80/control/applicationcenter/account/account/getUserLoginInfoList',method:'post',toolbar:'#account_toolbar_id'"
+                               data-options="border:true,emptyMsg:'暂无数据',fit:true,rownumbers:false,pagination:true,pageSize: 20,url:'',method:'post',toolbar:'#account_toolbar_id'"
                                style="display: none;">
                             <thead>
                             <tr>
@@ -511,32 +577,7 @@
     </div>
 </div>
 
-<script>
-    $(function () {
-        seajs.use("applicationcenter/account/accountMgmt", function (accountMgmt) {
-            accountMgmt.init({
-                modify_your_account_information: '修改账号信息',
-                change_password: '修改密码',
-                this_account_has_been_deleted_cannot_modify: '此账号已被删除，不能修改！',
-                delete_account_success: '删除账号成功！',
-                the_administrator_could_not_be_deleted: '管理员不能被删除！',
-                the_parent_could_not_be_deleted: '家长不能被删除！',
-                loginUserName: 'dayangadmin',
-                this_account_has_been_deleted_cannot_change_the_password: '此账号已被删除，不能修改密码 ！',
-                password_reset_failed: '账号密码重置失败！',
-                password_reset_success: '账号密码重置成功！',
-                confirm_reset_password: '是否重置密码？',
-                confirm_the_unlock: '确认解锁？',
-                the_account_is_not_locked_does_not_need_to_unlock: '该帐号未被锁定，不需要解锁！',
-                account_unlock_success: '账号解锁成功！',
-                normal_user_cannt_frozen: '正常状态的用户无法被解冻',
-                thaw_success: '解冻成功',
-                confirm_sync_cloud_user_info: '是否全量同步账号到培生和北京数字图书馆？',
-                sync_cloud_user_info_success: '培生和北京数字图书馆账号全量同步成功'
-            });
-        });
-    });
-</script>
+
 <div class="panel combo-p panel-htop" style="position: absolute; z-index: 10; display: none;">
     <div class="combo-panel panel-body panel-body-noheader" title="" id="">
         <div id="_easyui_combobox_i2_0" class="combobox-item combobox-item-selected">请选择</div>
@@ -755,4 +796,14 @@
 <div class="layout-split-proxy-h"></div>
 <div class="layout-split-proxy-v"></div>
 </body>
+
+<script type="text/javascript">
+    // $("#windowForInsert").toggle();
+    function insertCourse() {
+        // alert("执行");
+        // $("#windowForInsert").style.visibility = visible;
+        // $("#windowForInsert").css("display","block");
+        $("#windowForInsert").toggle();
+    }
+</script>
 </html>

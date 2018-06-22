@@ -10,27 +10,6 @@
 <link rel="stylesheet" type="text/css" href="http://my-photos.changs1992.cn/easyui.css">
 <link rel="stylesheet" type="text/css" href="http://my-photos.changs1992.cn/main.css">
 <script src="http://my-photos.changs1992.cn/jquery.min.js"></script>
-<script type="text/javascript" src="http://my-photos.changs1992.cn/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="http://my-photos.changs1992.cn/easyui-lang-zh_CN.js"></script>
-<script src="http://my-photos.changs1992.cn/sea.js"></script>
-<script type="text/javascript">
-    var CONTEXT_PATH = '/control';
-    var CONTEXT_URL = 'http://10.0.2.12:80/control/';
-    var i18n_language = 'zh_CN';
-    var DLS_URL = "http://10.0.2.12:8008/dls/download";
-    var IS_CCE = "1";
-    var USER_TYPE = "6";
-
-    seajs.config({
-        base: "http://10.0.2.12:80/control/js/module/",
-        preload: ["formatter"]
-    });
-
-    if (i18n_language == "") {
-        i18n_language = "zh_CN";
-    }
-    seajs.use(["lang/" + i18n_language, "formatter", "dialog", "page.condition"]);
-</script>
 <!DOCTYPE html>
 <html>
 <header>

@@ -3,14 +3,10 @@
          pageEncoding="UTF-8" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html class="panel-fit">
 <head>
-    <title>订单管理</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <link rel="stylesheet" type="text/css"/>
-
+    <link rel="icon" href="/control/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/control/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="http://my-photos.changs1992.cn/easyui.css">
     <link rel="stylesheet" type="text/css" href="http://my-photos.changs1992.cn/main.css">
     <script src="http://my-photos.changs1992.cn/jquery.min.js"></script>
@@ -18,46 +14,52 @@
     <script type="text/javascript" src="http://my-photos.changs1992.cn/easyui-lang-zh_CN.js"></script>
     <script src="http://my-photos.changs1992.cn/sea.js"></script>
 
+
 </head>
-<body class="easyui-layout m-innerbody layout panel-noscroll">
-<!-- 内页头部-->
-<div class="panel layout-panel layout-panel-north panel-htop" style="width: 1000px; left: 0px; top: 0px;">
-    <div data-options="region:'north',border:false" style="padding: 20px; width: 960px; height: 106px;" title=""
+<body class="m-innerbody easyui-layout layout panel-noscroll">
+<header>
+</header>
+<div class="panel window panel-htop" id="panel window panel-htop"
+     style="display: block; width: 500px; left: 525px; top: 477px; z-index: 9008;visibility: hidden;">
+    <div class="panel-header panel-header-noborder window-header" style="width: 480px;">
+        <div class="panel-title">修改账号信息</div>
+        <div class="panel-tool"><a href="javascript:;" class="panel-tool-close"></a></div>
+    </div>
+    <div id="dialog" class="m-iformbox panel-body panel-body-noborder window-body" title=""
+         style="width: 500px; height: 360px;">
+        <iframe src="${frameUrl}"></iframe>
+    </div>
+</div>
+
+<div class="panel layout-panel layout-panel-north panel-htop" style="width: 1600px; left: 0px; top: 0px;">
+    <div data-options="region:'north',border:false" style="padding: 20px; width: 1400px; height: 106px;" title=""
          class="panel-body panel-body-noheader panel-body-noborder layout-body">
-        <!-- 表单 -->
         <form id="searchForm">
             <table class="m-form">
                 <tbody>
                 <tr>
-                    <th>
-                        <label>登录名</label>
-                    </th>
+                    <th><label>账号姓名</label></th>
                     <td>
-                        <input class="easyui-textbox textbox-f" style="height: 30px; width: 200px; display: none;"
-                               textboxname="loginName"><span class="textbox" style="width: 198px; height: 28px;"><input
+                        <input class="easyui-textbox textbox-f" style="height: 30px; width: 150px; display: none;"
+                               textboxname="realName"><span class="textbox" style="width: 148px; height: 28px;"><input
                             id="_easyui_textbox_input1" type="text" class="textbox-text validatebox-text textbox-prompt"
                             autocomplete="off" tabindex="" placeholder=""
-                            style="margin: 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 190px;"><input
-                            type="hidden" class="textbox-value" name="loginName" value=""></span>
+                            style="margin: 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 140px;"><input
+                            type="hidden" class="textbox-value" name="realName" value=""></span>
                     </td>
-                    <th>
-                        <label>用户姓名</label>
-                    </th>
-                    <td>
-                        <input class="easyui-textbox textbox-f" style="height: 30px; width: 200px; display: none;"
-                               textboxname="userName"><span class="textbox" style="width: 198px; height: 28px;"><input
+                    <th><label>账号ID</label></th>
+                    <td><input class="easyui-textbox textbox-f" style="height: 30px; width: 150px; display: none;"
+                               textboxname="userId"><span class="textbox" style="width: 148px; height: 28px;"><input
                             id="_easyui_textbox_input2" type="text" class="textbox-text validatebox-text textbox-prompt"
                             autocomplete="off" tabindex="" placeholder=""
-                            style="margin: 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 190px;"><input
-                            type="hidden" class="textbox-value" name="userName" value=""></span>
-                    </td>
-                    <th>
-                        <label>机构</label>
-                    </th>
+                            style="margin: 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 140px;"><input
+                            type="hidden" class="textbox-value" name="userId" value=""></span></td>
+                    <th><label>账号类型</label></th>
                     <td>
-                        <select id="org-list" class="easyui-combobox combobox-f combo-f textbox-f"
-                                style="height: 30px; width: 200px; display: none;" textboxname="org" comboname="org">
-                        </select><span class="textbox combo" style="width: 198px; height: 28px;"><span
+                        <select id="account_userType_id" class="easyui-combobox combobox-f combo-f textbox-f"
+                                style="height: 30px; width: 150px; display: none;" textboxname="userType"
+                                comboname="userType">
+                        </select><span class="textbox combo" style="width: 148px; height: 28px;"><span
                             class="textbox-addon textbox-addon-right" style="right: 0px; top: 0px;"><a
                             href="javascript:;" class="textbox-icon combo-arrow" icon-index="0" tabindex="-1"
                             style="width: 18px; height: 28px;"></a></span><input id="_easyui_textbox_input10"
@@ -65,111 +67,104 @@
                                                                                  class="textbox-text validatebox-text validatebox-readonly"
                                                                                  autocomplete="off" tabindex=""
                                                                                  readonly="readonly" placeholder=""
-                                                                                 style="margin: 0px 18px 0px 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 172px;"><input
-                            type="hidden" class="textbox-value" name="org" value=""></span>
+                                                                                 style="margin: 0px 18px 0px 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 122px;"><input
+                            type="hidden" class="textbox-value" name="userType" value=""></span>
                     </td>
-                    <th>
-                        <label>商品类型</label>
-                    </th>
+                    <th><label>注册日期</label></th>
                     <td>
-                        <select id="goods-type-list" class="easyui-combobox combobox-f combo-f textbox-f"
-                                style="height: 30px; width: 200px; display: none;" textboxname="goodsType"
-                                comboname="goodsType">
-                        </select><span class="textbox combo" style="width: 198px; height: 28px;"><span
-                            class="textbox-addon textbox-addon-right" style="right: 0px; top: 0px;"><a
-                            href="javascript:;" class="textbox-icon combo-arrow" icon-index="0" tabindex="-1"
-                            style="width: 18px; height: 28px;"></a></span><input id="_easyui_textbox_input11"
-                                                                                 type="text"
-                                                                                 class="textbox-text validatebox-text validatebox-readonly"
-                                                                                 autocomplete="off" tabindex=""
-                                                                                 readonly="readonly" placeholder=""
-                                                                                 style="margin: 0px 18px 0px 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 172px;"><input
-                            type="hidden" class="textbox-value" name="goodsType" value=""></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <label>状态</label>
-                    </th>
-                    <td>
-                        <select id="status-list" class="easyui-combobox combobox-f combo-f textbox-f"
-                                style="height: 30px; width: 200px; display: none;" textboxname="status"
-                                comboname="status">
-                        </select><span class="textbox combo" style="width: 198px; height: 28px;"><span
-                            class="textbox-addon textbox-addon-right" style="right: 0px; top: 0px;"><a
-                            href="javascript:;" class="textbox-icon combo-arrow" icon-index="0" tabindex="-1"
-                            style="width: 18px; height: 28px;"></a></span><input id="_easyui_textbox_input12"
-                                                                                 type="text"
-                                                                                 class="textbox-text validatebox-text validatebox-readonly"
-                                                                                 autocomplete="off" tabindex=""
-                                                                                 readonly="readonly" placeholder=""
-                                                                                 style="margin: 0px 18px 0px 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 172px;"><input
-                            type="hidden" class="textbox-value" name="status" value=""></span>
-                    </td>
-                    <th>
-                        <label>消费日期</label>
-                    </th>
-                    <td>
-                        <input id="startTime" data-options="editable: false"
+                        <input id="register_time" data-options="editable: false"
                                class="easyui-datebox datebox-f combo-f textbox-f"
-                               style="height: 30px; width: 200px; display: none;" textboxname="startTime"
-                               comboname="startTime"><span class="textbox combo datebox"
-                                                           style="width: 198px; height: 28px;"><span
+                               style="height: 30px; width: 150px; display: none;" textboxname="registerTime"
+                               comboname="registerTime"><span class="textbox combo datebox"
+                                                              style="width: 148px; height: 28px;"><span
+                            class="textbox-addon textbox-addon-right" style="right: 0px; top: 0px;"><a
+                            href="javascript:;" class="textbox-icon combo-arrow" icon-index="0" tabindex="-1"
+                            style="width: 18px; height: 28px;"></a></span><input id="_easyui_textbox_input7" type="text"
+                                                                                 class="textbox-text validatebox-text validatebox-readonly textbox-prompt"
+                                                                                 autocomplete="off" tabindex=""
+                                                                                 readonly="readonly" placeholder=""
+                                                                                 style="margin: 0px 18px 0px 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 122px;"><input
+                            type="hidden" class="textbox-value" name="registerTime" value=""></span>
+                    </td>
+                    <th><label>登录日期</label></th>
+                    <td>
+                        <input id="login_date" data-options="editable: false"
+                               class="easyui-datebox datebox-f combo-f textbox-f"
+                               style="height: 30px; width: 150px; display: none;" textboxname="loginDate"
+                               comboname="loginDate"><span class="textbox combo datebox"
+                                                           style="width: 148px; height: 28px;"><span
                             class="textbox-addon textbox-addon-right" style="right: 0px; top: 0px;"><a
                             href="javascript:;" class="textbox-icon combo-arrow" icon-index="0" tabindex="-1"
                             style="width: 18px; height: 28px;"></a></span><input id="_easyui_textbox_input8" type="text"
                                                                                  class="textbox-text validatebox-text validatebox-readonly textbox-prompt"
                                                                                  autocomplete="off" tabindex=""
                                                                                  readonly="readonly" placeholder=""
-                                                                                 style="margin: 0px 18px 0px 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 172px;"><input
-                            type="hidden" class="textbox-value" name="startTime" value=""></span>
+                                                                                 style="margin: 0px 18px 0px 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 122px;"><input
+                            type="hidden" class="textbox-value" name="loginDate" value=""></span>
                     </td>
-                    <th>
-                        <label>~</label>
-                    </th>
+                </tr>
+                <tr>
+                    <th><label>登录名</label></th>
+                    <td><input class="easyui-textbox textbox-f" style="height: 30px; width: 150px; display: none;"
+                               textboxname="loginName"><span class="textbox" style="width: 148px; height: 28px;"><input
+                            id="_easyui_textbox_input3" type="text" class="textbox-text validatebox-text textbox-prompt"
+                            autocomplete="off" tabindex="" placeholder=""
+                            style="margin: 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 140px;"><input
+                            type="hidden" class="textbox-value" name="loginName" value=""></span></td>
+                    <th><label>是否锁定</label></th>
                     <td>
-                        <input id="endTime" data-options="editable: false"
-                               class="easyui-datebox datebox-f combo-f textbox-f"
-                               style="height: 30px; width: 200px; display: none;" textboxname="endTime"
-                               comboname="endTime"><span class="textbox combo datebox"
-                                                         style="width: 198px; height: 28px;"><span
+                        <select id="account_isLocked_id" class="easyui-combobox combobox-f combo-f textbox-f"
+                                style="height: 30px; width: 150px; display: none;" textboxname="isLocked"
+                                comboname="isLocked">
+                        </select><span class="textbox combo" style="width: 148px; height: 28px;"><span
                             class="textbox-addon textbox-addon-right" style="right: 0px; top: 0px;"><a
                             href="javascript:;" class="textbox-icon combo-arrow" icon-index="0" tabindex="-1"
                             style="width: 18px; height: 28px;"></a></span><input id="_easyui_textbox_input9" type="text"
-                                                                                 class="textbox-text validatebox-text validatebox-readonly textbox-prompt"
+                                                                                 class="textbox-text validatebox-text validatebox-readonly"
                                                                                  autocomplete="off" tabindex=""
                                                                                  readonly="readonly" placeholder=""
-                                                                                 style="margin: 0px 18px 0px 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 172px;"><input
-                            type="hidden" class="textbox-value" name="endTime" value=""></span>
+                                                                                 style="margin: 0px 18px 0px 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 122px;"><input
+                            type="hidden" class="textbox-value" name="isLocked" value=""></span>
                     </td>
-                    <th></th>
+                    <th><label>所在机构</label></th>
+                    <td><input class="easyui-textbox textbox-f" style="height: 30px; width: 150px; display: none;"
+                               textboxname="orgName"><span class="textbox" style="width: 148px; height: 28px;"><input
+                            id="_easyui_textbox_input4" type="text" class="textbox-text validatebox-text textbox-prompt"
+                            autocomplete="off" tabindex="" placeholder=""
+                            style="margin: 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 140px;"><input
+                            type="hidden" class="textbox-value" name="orgName" value=""></span></td>
+                    <th>&nbsp;</th>
                     <td>
-                        <a id="search-btn" class="u-btn blue"><i class="ico ico-search"></i>查询</a>
-                        <a id="reset-btn" class="u-btn white"><i class="ico ico-del"></i>清除</a>
+                        <a class="u-btn blue" id="search-btn"><i class="ico ico-search"></i>查询</a>
+                        <a class="u-btn white" id="reset-btn"><i class="ico ico-del"></i>清除</a>
+                    </td>
+                    <th>&nbsp;</th>
+                    <td>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </form>
-        <!-- /表单 -->
     </div>
 </div>
-<!-- /内页头部-->
-
-<!-- 内页主体-->
-<div class="panel layout-panel layout-panel-center panel-htop" style="width: 1000px; left: 0px; top: 146px;">
-    <div data-options="region:'center',border:false" style="padding: 0px 20px 20px; width: 960px; height: 1020px;"
+<div class="panel layout-panel layout-panel-center panel-htop" style="width: 1600px; left: 0px; top: 146px;">
+    <div data-options="region:'center',border:false" style="padding: 0px 20px 20px; width: 1400px; height: 1020px;"
          title="" class="panel-body panel-body-noheader panel-body-noborder layout-body">
         <!-- 数据表格 -->
-        <div class="m-datagrid">
-            <div class="panel datagrid panel-htop easyui-fluid" style="width: 960px;">
+        <div class="m-datagrid panel-noscroll">
+            <div class="panel datagrid panel-htop easyui-fluid" style="width: 1400px;">
                 <div class="datagrid-wrap panel-body panel-body-noheader" title=""
-                     style="width: 958px; height: 1018px;">
-                    <div class="m-toolbar datagrid-toolbar" id="toolbar">
-                        <a id="orderExportBtn" class="u-toolbtn"><i class="ico ico-add"></i>导出订单</a>
-                        <a id="downloadUrl" style="display: none;" href=""></a>
+                     style="width: 1600px; height: 1018px;">
+                    <div class="m-toolbar datagrid-toolbar" id="account_toolbar_id">
+
+
+                        <a id="modify_id" class="u-toolbtn"><i class="ico ico-modify"></i>修改课程</a>
+
+                        <a id="insert_id" class="u-toolbtn"><i class="ico ico-modify"
+                                                               href="javascript:insertCourse();"></i>添加课程</a>
+                        <a id="delete_id" class="u-toolbtn"><i class="ico ico-modify"></i>删除课程</a>
                     </div>
-                    <div class="datagrid-view" style="width: 958px; height: 952px;">
+                    <div class="datagrid-view" style="width: 1600px; height: 952px;">
                         <div class="datagrid-view1" style="width: 0px;">
                             <div class="datagrid-header" style="width: 0px; height: 24px;">
                                 <div class="datagrid-header-inner" style="display: block;">
@@ -186,8 +181,8 @@
                                 <div class="datagrid-footer-inner" style="display: none;"></div>
                             </div>
                         </div>
-                        <div class="datagrid-view2" style="width: 958px;">
-                            <div class="datagrid-header" style="width: 958px; height: 24px;">
+                        <div class="datagrid-view2" style="width: 1600px;">
+                            <div class="datagrid-header" style="width: 1600px; height: 24px;">
                                 <div class="datagrid-header-inner" style="display: block;">
                                     <table class="datagrid-htable" border="0" cellspacing="0" cellpadding="0"
                                            style="height: 25px;">
@@ -196,130 +191,192 @@
                                             <td field="ck">
                                                 <div class="datagrid-header-check"><input type="checkbox"></div>
                                             </td>
-                                            <td field="orderId">
-                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-orderId"><span>订购记录ID</span><span
-                                                        class="datagrid-sort-icon"></span></div>
-                                            </td>
-                                            <td field="loginName">
+                                            <td field="userId">
                                                 <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName">
-                                                    <span>登录名</span><span class="datagrid-sort-icon"></span></div>
-                                            </td>
-                                            <td field="userName">
-                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-userName">
-                                                    <span>用户姓名</span><span class="datagrid-sort-icon"></span></div>
-                                            </td>
-                                            <td field="userInSchool">
-                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-userInSchool">
-                                                    <span>用户所在学校</span><span class="datagrid-sort-icon"></span></div>
-                                            </td>
-                                            <td field="goodsType">
-                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-goodsType">
-                                                    <span>商品类型</span><span class="datagrid-sort-icon"></span></div>
-                                            </td>
-                                            <td field="goodsName">
-                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-goodsName">
-                                                    <span>商品名称</span><span class="datagrid-sort-icon"></span></div>
-                                            </td>
-                                            <td field="orderTime">
-                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-orderTime">
-                                                    <span>消费时间</span><span class="datagrid-sort-icon"></span></div>
-                                            </td>
-                                            <td field="status" class="">
-                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-status"><span>状态</span><span
+                                                    <span>课程ID</span><span
                                                         class="datagrid-sort-icon"></span></div>
                                             </td>
+                                            <td field="realName">
+                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName">
+                                                    <span>课程名</span><span class="datagrid-sort-icon"></span></div>
+                                            </td>
+                                            <td field="loginName" class="">
+                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName">
+                                                    <span>年级</span><span class="datagrid-sort-icon"></span></div>
+                                            </td>
+                                            <td field="orgName" class="">
+                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName">
+                                                    <span>时间</span><span
+                                                        class="datagrid-sort-icon"></span></div>
+                                            </td>
+                                            <td field="userTypeName" class="">
+                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName">
+                                                    <span>教室</span><span class="datagrid-sort-icon"></span></div>
+                                            </td>
+                                            <td field="statusName" class="">
+                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName"
+                                                     style=""><span>年龄跨度</span><span class="datagrid-sort-icon"></span>
+                                                </div>
+                                            </td>
+                                            <td field="loginEmail" class="">
+                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName">
+                                                    <span>老师</span><span class="datagrid-sort-icon"></span></div>
+                                            </td>
+                                            <td field="loginMobile" class="">
+                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName">
+                                                    <span>学费</span><span class="datagrid-sort-icon"></span></div>
+                                            </td>
+                                            <td field="isLocked">
+                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName">
+                                                    <span>预招人数</span><span class="datagrid-sort-icon"></span></div>
+                                            </td>
+                                            <td field="currentLoginTime">
+                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName">
+                                                    <span>状态</span><span class="datagrid-sort-icon"></span></div>
+                                            </td>
+                                            <td field="lastLoginTime">
+                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName">
+                                                    <span>宣传图</span><span class="datagrid-sort-icon"></span></div>
+                                            </td>
+                                            <td field="lastLoginTime">
+                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName">
+                                                    <span>报名须知</span><span class="datagrid-sort-icon"></span></div>
+                                            </td>
+                                            <td field="lastLoginTime">
+                                                <div class="datagrid-cell datagrid-sort datagrid-cell-c1-loginName">
+                                                    <span>详情介绍</span><span class="datagrid-sort-icon"></span></div>
+                                            </td>
+
                                         </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <div class="datagrid-body"
-                                 style="width: 958px; margin-top: 0px; height: 927px; overflow-x: hidden;">
+                            <div class="datagrid-body" style="width: 1600px; margin-top: 0px; height: 927px;">
                                 <table class="datagrid-btable" cellspacing="0" cellpadding="0" border="0">
                                     <tbody>
-                                    <tr id="datagrid-row-r1-2-0" class=""
-                                        style="height: 1px; border-color: transparent; background: transparent;">
-                                        <td field="ck"
-                                            style="height: 1px; border-color: transparent; background: transparent;">
-                                            <div style="height: 1px; border-color: transparent; background: transparent;"
-                                                 class="datagrid-cell-check"></div>
-                                        </td>
-                                        <td field="orderId"
-                                            style="height: 1px; border-color: transparent; background: transparent;">
-                                            <div style="height: 1px; border-color: transparent; background: transparent;"
-                                                 class="datagrid-cell datagrid-cell-c1-orderId"></div>
-                                        </td>
-                                        <td field="loginName"
-                                            style="height: 1px; border-color: transparent; background: transparent;">
-                                            <div style="height: 1px; border-color: transparent; background: transparent;"
-                                                 class="datagrid-cell datagrid-cell-c1-loginName"></div>
-                                        </td>
-                                        <td field="userName"
-                                            style="height: 1px; border-color: transparent; background: transparent;">
-                                            <div style="height: 1px; border-color: transparent; background: transparent;"
-                                                 class="datagrid-cell datagrid-cell-c1-userName"></div>
-                                        </td>
-                                        <td field="userInSchool"
-                                            style="height: 1px; border-color: transparent; background: transparent;">
-                                            <div style="height: 1px; border-color: transparent; background: transparent;"
-                                                 class="datagrid-cell datagrid-cell-c1-userInSchool"></div>
-                                        </td>
-                                        <td field="goodsType"
-                                            style="height: 1px; border-color: transparent; background: transparent;">
-                                            <div style="height: 1px; border-color: transparent; background: transparent;"
-                                                 class="datagrid-cell datagrid-cell-c1-goodsType"></div>
-                                        </td>
-                                        <td field="goodsName"
-                                            style="height: 1px; border-color: transparent; background: transparent;">
-                                            <div style="height: 1px; border-color: transparent; background: transparent;"
-                                                 class="datagrid-cell datagrid-cell-c1-goodsName"></div>
-                                        </td>
-                                        <td field="orderTime"
-                                            style="height: 1px; border-color: transparent; background: transparent;">
-                                            <div style="height: 1px; border-color: transparent; background: transparent;"
-                                                 class="datagrid-cell datagrid-cell-c1-orderTime"></div>
-                                        </td>
-                                        <td field="status"
-                                            style="height: 1px; border-color: transparent; background: transparent;">
-                                            <div style="height: 1px; border-color: transparent; background: transparent;"
-                                                 class="datagrid-cell datagrid-cell-c1-status"></div>
-                                        </td>
-                                    </tr>
+                                    <c:forEach items="${courseList}" var="user">
+                                        <tr id="datagrid-row-r1-2-0" datagrid-row-index="0" class="datagrid-row">
+                                            <td field="ck">
+                                                <div style="" class="datagrid-cell-check"><input type="checkbox"
+                                                                                                 name="ck"
+                                                                                                 value=""></div>
+                                            </td>
+                                            <td field="course_id">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName">
+                                                    <span title="DYDEV01600000000000">${user.course_id}</span></div>
+                                            </td>
+                                            <td field="subject">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName">
+                                                    <span title="DYDEV01600000000000">${user.subject}</span></div>
+                                            </td>
+                                            <td field="class_name">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName">
+                                                    <span title="js001">${user.class_name}</span></div>
+                                            </td>
+                                            <td field="time">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName">
+                                                    <span title="js001">${user.time}</span></div>
+                                            </td>
+                                            <td field="classroom">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName">
+                                                    <span title="大洋学校">${user.classroom}</span></div>
+                                            </td>
+                                            <td field="age">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName"><span
+                                                        title="教师">${user.age}</span></div>
+                                            </td>
+                                            <td field="teacher">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName">
+                                                    <span title="正常">${user.teacher}</span></div>
+                                            </td>
+                                            <td field="cost">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName">
+                                                    <span title="">${user.cost}</span></div>
+                                            </td>
+                                            <td field="number">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName"><span
+                                                        title="">${user.number}</span></div>
+                                            </td>
+                                            <td field="status">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName">
+                                                    <span title="否">${user.status}</span></div>
+                                            </td>
+                                            <td field="iamge_url">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName"><span
+                                                        title="2018-06-21 13:51:32">${user.iamge_url}</span></div>
+                                            </td>
+                                            <td field="information">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName"><span
+                                                        title="2018-06-21 11:50:07">${user.information}</span></div>
+                                            </td>
+                                            <td field="details">
+                                                <div style="height:auto;"
+                                                     class="datagrid-cell datagrid-cell-c1-loginName"><span
+                                                        title="2018-06-06 14:17:05">${user.details}</span></div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="datagrid-footer" style="width: 958px;">
+                            <div class="datagrid-footer" style="width: 1600px;">
                                 <div class="datagrid-footer-inner" style="display: none;"></div>
                             </div>
                         </div>
-                        <table id="order-info-list" class="easyui-datagrid datagrid-f" style="display: none;"
-                               data-options="emptyMsg:'暂无数据',url:'http://10.0.2.12:80/control/operation/api/goodsMgmt/order/list',method:'get',pagination:true,toolbar:'#toolbar'">
+                        <table id="account-Manager-list" class="easyui-datagrid datagrid-f" title=""
+                               data-options="border:true,emptyMsg:'暂无数据',fit:true,rownumbers:false,pagination:true,pageSize: 20,url:'',method:'post',toolbar:'#account_toolbar_id'"
+                               style="display: none;">
                             <thead>
                             <tr>
                                 <th data-options="field:'ck',checkbox:true"></th>
-                                <th data-options="field:'orderId',formatter:parent.formatCellTooltip" width="150"
-                                    sortable="true">订购记录ID
+                                <th data-options="field:'userId',formatter:parent.formatCellTooltip" width="150"
+                                    sortable="true">账号ID
+                                </th>
+                                <th data-options="field:'realName',formatter:parent.formatCellTooltip" width="100"
+                                    sortable="true">账号姓名
                                 </th>
                                 <th data-options="field:'loginName',formatter:parent.formatCellTooltip" width="100"
                                     sortable="true">登录名
                                 </th>
-                                <th data-options="field:'userName',formatter:parent.formatCellTooltip" width="100"
-                                    sortable="true">用户姓名
+                                <th data-options="field:'orgName',formatter:parent.formatCellTooltip" width="120"
+                                    sortable="true">所在机构
                                 </th>
-                                <th data-options="field:'userInSchool',formatter:parent.formatCellTooltip" width="120"
-                                    sortable="true">用户所在学校
+                                <th data-options="field:'userTypeName',formatter:parent.formatCellTooltip" width="70"
+                                    sortable="true">账号类型
                                 </th>
-                                <th data-options="field:'goodsType',formatter:parent.formatCellTooltip" width="120"
-                                    sortable="true">商品类型
-                                </th>
-                                <th data-options="field:'goodsName',formatter:parent.formatCellTooltip" width="100"
-                                    sortable="true">商品名称
-                                </th>
-                                <th data-options="field:'orderTime',formatter:parent.formatDateTimeSec" width="150"
-                                    sortable="true">消费时间
-                                </th>
-                                <th data-options="field:'status',formatter:parent.formatCellTooltip" width="80"
+                                <th data-options="field:'statusName',formatter:parent.formatCellTooltip" width="50"
                                     sortable="true">状态
+                                </th>
+                                <th data-options="field:'loginEmail',formatter:parent.formatCellTooltip" width="100"
+                                    sortable="true">邮箱
+                                </th>
+                                <th data-options="field:'loginMobile',formatter:parent.formatCellTooltip" width="90"
+                                    sortable="true">手机号码
+                                </th>
+                                <th data-options="field:'isLocked',formatter:parent.formatYesOrNo" width="70"
+                                    sortable="true">是否锁定
+                                </th>
+                                <th data-options="field:'currentLoginTime',formatter:parent.formatDateTimeSec"
+                                    width="130" sortable="true">最近登录时间
+                                </th>
+                                <th data-options="field:'lastLoginTime',formatter:parent.formatDateTimeSec" width="130"
+                                    sortable="true">上次登录时间
+                                </th>
+                                <th data-options="field:'lastModifyTime',formatter:parent.formatDateTimeSec" width="130"
+                                    sortable="true">更新日期
                                 </th>
                             </tr>
                             </thead>
@@ -333,39 +390,54 @@
                                 width: 29px
                             }
 
-                            .datagrid-cell-c1-orderId {
+                            .datagrid-cell-c1-userId {
                                 width: 141px
+                            }
+
+                            .datagrid-cell-c1-realName {
+                                width: 91px
                             }
 
                             .datagrid-cell-c1-loginName {
                                 width: 91px
                             }
 
-                            .datagrid-cell-c1-userName {
-                                width: 91px
-                            }
-
-                            .datagrid-cell-c1-userInSchool {
+                            .datagrid-cell-c1-orgName {
                                 width: 111px
                             }
 
-                            .datagrid-cell-c1-goodsType {
-                                width: 111px
+                            .datagrid-cell-c1-userTypeName {
+                                width: 61px
                             }
 
-                            .datagrid-cell-c1-goodsName {
+                            .datagrid-cell-c1-statusName {
+                                width: 41px
+                            }
+
+                            .datagrid-cell-c1-loginEmail {
                                 width: 91px
                             }
 
-                            .datagrid-cell-c1-orderTime {
-                                width: 141px
+                            .datagrid-cell-c1-loginMobile {
+                                width: 81px
                             }
 
-                            .datagrid-cell-c1-status {
-                                width: 71px
+                            .datagrid-cell-c1-isLocked {
+                                width: 61px
+                            }
+
+                            .datagrid-cell-c1-currentLoginTime {
+                                width: 121px
+                            }
+
+                            .datagrid-cell-c1-lastLoginTime {
+                                width: 121px
+                            }
+
+                            .datagrid-cell-c1-lastModifyTime {
+                                width: 121px
                             }
                         </style>
-                        <div class="datagrid-empty" style="top: 25px;">暂无数据</div>
                     </div>
                     <div class="datagrid-pager pagination">
                         <table cellspacing="0" cellpadding="0" border="0">
@@ -396,7 +468,7 @@
                                 </td>
                                 <td><span style="padding-left:6px;">第</span></td>
                                 <td><input class="pagination-num" type="text" value="1" size="2"></td>
-                                <td><span style="padding-right:6px;">共0页</span></td>
+                                <td><span style="padding-right:6px;">共1页</span></td>
                                 <td>
                                     <div class="pagination-btn-separator"></div>
                                 </td>
@@ -420,12 +492,11 @@
                             </tr>
                             </tbody>
                         </table>
-                        <div class="pagination-info">显示0到0,共0记录</div>
+                        <div class="pagination-info">显示1到8,共8记录</div>
                         <div style="clear:both;"></div>
                     </div>
                 </div>
             </div>
-
             <!-- 表格工具栏 -->
 
             <!-- /表格工具栏 -->
@@ -433,34 +504,27 @@
         <!-- /数据表格 -->
     </div>
 </div>
-<!-- /内页主体-->
-
-<script>
-    $(function () {
-        seajs.use("operationcenter/goods/orderMgmt", function (orderMgmt) {
-            orderMgmt.init();
-        });
-    });
+<script type="javascript">
+    function insertCourse() {
+        $("#panel window panel-htop").style.visibility = visible;
+    }
 </script>
-<div class="panel combo-p panel-htop" style="position: absolute; z-index: 10; display: none;">
-    <div class="combo-panel panel-body panel-body-noheader" title="" id="">
-        <div id="_easyui_combobox_i1_0" class="combobox-item combobox-item-selected">请选择</div>
-        <div id="_easyui_combobox_i1_1" class="combobox-item">大洋学校</div>
-    </div>
-</div>
+
 <div class="panel combo-p panel-htop" style="position: absolute; z-index: 10; display: none;">
     <div class="combo-panel panel-body panel-body-noheader" title="" id="">
         <div id="_easyui_combobox_i2_0" class="combobox-item combobox-item-selected">请选择</div>
-        <div id="_easyui_combobox_i2_1" class="combobox-item">应用</div>
-        <div id="_easyui_combobox_i2_2" class="combobox-item">资源</div>
+        <div id="_easyui_combobox_i2_1" class="combobox-item">学生</div>
+        <div id="_easyui_combobox_i2_2" class="combobox-item">教师</div>
+        <div id="_easyui_combobox_i2_3" class="combobox-item">家长</div>
+        <div id="_easyui_combobox_i2_4" class="combobox-item">大洋员工</div>
+        <div id="_easyui_combobox_i2_5" class="combobox-item">管理员</div>
     </div>
 </div>
 <div class="panel combo-p panel-htop" style="position: absolute; z-index: 10; display: none;">
     <div class="combo-panel panel-body panel-body-noheader" title="" id="">
-        <div id="_easyui_combobox_i3_0" class="combobox-item combobox-item-selected">请选择</div>
-        <div id="_easyui_combobox_i3_1" class="combobox-item">已完成</div>
-        <div id="_easyui_combobox_i3_2" class="combobox-item">待支付</div>
-        <div id="_easyui_combobox_i3_3" class="combobox-item">已取消</div>
+        <div id="_easyui_combobox_i1_0" class="combobox-item combobox-item-selected">请选择</div>
+        <div id="_easyui_combobox_i1_1" class="combobox-item">是</div>
+        <div id="_easyui_combobox_i1_2" class="combobox-item">否</div>
     </div>
 </div>
 <div class="panel combo-p panel-htop" style="position: absolute; z-index: 10; display: none;">
