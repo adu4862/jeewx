@@ -478,7 +478,7 @@
         <div id="_easyui_combobox_i2_1" class="combobox-item">学生</div>
         <div id="_easyui_combobox_i2_2" class="combobox-item">教师</div>
         <div id="_easyui_combobox_i2_3" class="combobox-item">家长</div>
-        <div id="_easyui_combobox_i2_4" class="combobox-item">大洋员工</div>
+        <div id="_easyui_combobox_i2_4" class="combobox-item"></div>
         <div id="_easyui_combobox_i2_5" class="combobox-item">管理员</div>
     </div>
 </div>
