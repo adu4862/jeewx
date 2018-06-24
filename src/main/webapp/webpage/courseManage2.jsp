@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="keywords" content="jquery,ui,easy,easyui,web">
     <meta name="description" content="easyui help you build your web page easily!">
-    <title>订单管理</title>
+    <title>课程管理</title>
     <link rel="stylesheet" type="text/css" href="http://www.w3cschool.cc/try/jeasyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="http://www.w3cschool.cc/try/jeasyui/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="http://www.w3cschool.cc/try/jeasyui/demo/demo.css">
@@ -44,8 +44,13 @@
         function newUser() {
             $('#dlg').dialog('open').dialog('setTitle', 'New User');
             $('#fm').form('clear');
-            url = 'modifyOrderController.do?addOrder';
-
+            url = 'modifyCourseController.do?addCourse';
+            // var vals = $("#modifyAccountForm").serialize();
+            // $.post("modifyCourseController.do?addCourse", vals, function (data) {
+            //     // alert("前台取得值：\n" + vals+"\n后台取得值：\n"+data);
+            //     window.location.reload();
+            //     $('#dd').dialog('close');
+            // });
         }
 
         function editUser() {
@@ -53,7 +58,7 @@
             if (row) {
                 $('#dlg').dialog('open').dialog('setTitle', 'Edit User');
                 $('#fm').form('load', row);
-                url = 'modifyOrderController.do?updateOrder&orderId='+row.orderId;
+                url = 'modifyCourseController.do?updateOrder&course_id='+row.course_id;
             }
         }
 
@@ -81,9 +86,9 @@
         function removeUser() {
             var row = $('#dg').datagrid('getSelected');
             if (row) {
-                $.messager.confirm('确认', '是否确认删除该订单?', function (r) {
+                $.messager.confirm('确认', '是否确认删除该课程?', function (r) {
                     if (r) {
-                        $.post('modifyOrderController.do?removeOrder', {orderId: row.orderId}, function (result) {
+                        $.post('modifyCourseController.do?removeCourse', {course_id: row.course_id}, function (result) {
                             if (result.success) {
                                 $('#dg').datagrid('reload');	// reload the user data
                             } else {
@@ -102,35 +107,30 @@
 <body>
 
 
-<table id="dg" title="订单管理" class="easyui-datagrid" style="width:1400px;height:750px"
-       url="modifyOrderController.do?getAllOrder"
+<table id="dg" title="课程管理" class="easyui-datagrid" style="width:1400px;height:750px"
+       url="modifyCourseController.do?getAllCourse"
        toolbar="#toolbar" pagination="true"
        rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
     <tr>
-        <th field="course_id" width="50">订单ID</th>
-        <th field="name" width="50">姓名</th>
-        <th field="age" width="50">年龄</th>
-        <th field="sex" width="50">性别</th>
-        <th field="born" width="50">出生</th>
-        <th field="school" width="50">学校</th>
-        <th field="grade" width="50">年级</th>
-        <th field="hobby" width="50">兴趣</th>
-        <th field="phone" width="50">电话</th>
-        <th field="address" width="50">地址</th>
-        <th field="father_name" width="50">父亲名字</th>
-        <th field="father_phone" width="50">父亲电话</th>
-        <th field="mother_name" width="50">母亲名字</th>
-        <th field="mother_phone" width="50">母亲电话</th>
-        <th field="openId" width="50">openId</th>
-        <th field="cost" width="50">费用</th>
-        <th field="orderId" width="50">订单号</th>
-        <th field="payed" width="50">是否支付</th>
+        <th field="course_id" width="50">课程ID</th>
+        <th field="subject" width="50">课程名</th>
+        <th field="class_name" width="50">年级</th>
+        <th field="age" width="50">年龄跨度</th>
+        <th field="time" width="50">时间</th>
+        <th field="classroom" width="50">教室</th>
+        <th field="teacher" width="50">老师</th>
+        <th field="cost" width="50">学费</th>
+        <th field="number" width="50">预招人数</th>
+        <th field="status" width="50">状态</th>
+        <th field="iamge_url" width="50">宣传图</th>
+        <th field="information" width="50">报名须知</th>
+        <th field="details" width="50">详情介绍</th>
     </tr>
     </thead>
 </table>
 <div id="toolbar">
-    <%--<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">新增</a>--%>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">新增</a>
     <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">编辑</a>
     <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">删除</a>
 </div>
@@ -140,68 +140,52 @@
     <div class="ftitle">User Information</div>
     <form id="fm" method="post" novalidate>
         <div class="fitem">
-            <label>姓名:</label>
-            <input name="name" class="easyui-validatebox" required="true">
-        </div>
-        <div class="fitem">
-            <label>年龄:</label>
-            <input name="age" class="easyui-validatebox" required="true">
-        </div>
-        <div class="fitem">
-            <label>性别:</label>
-            <input name="sex" class="easyui-validatebox" required="true">
-        </div>
-        <div class="fitem">
-            <label>出生:</label>
-            <input name="born" class="easyui-validatebox" validType="true">
-        </div>
-        <div class="fitem">
-            <label>学校:</label>
-            <input name="school" class="easyui-validatebox" required="true">
+            <label>课程名:</label>
+            <input name="subject" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
             <label>年级:</label>
-            <input name="grade" class="easyui-validatebox" required="true">
+            <input name="class_name" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
-            <label>兴趣:</label>
-            <input name="hobby"  validType="number">
+            <label>年龄跨度:</label>
+            <input name="age" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
-            <label>电话:</label>
-            <input name="phone" class="easyui-validatebox" required="true">
+            <label>时间:</label>
+            <input name="time" class="easyui-validatebox" validType="true">
         </div>
         <div class="fitem">
-            <label>地址:</label>
-            <input name="address" class="easyui-validatebox"  required="true">
+            <label>教室:</label>
+            <input name="classroom" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
-            <label>父亲名字:</label>
-            <input name="father_name" class="easyui-validatebox" required="true">
+            <label>老师:</label>
+            <input name="teacher" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
-            <label>父亲电话:</label>
-            <input name="father_phone" class="easyui-validatebox" required="true">
+            <label>学费:</label>
+            <input name="cost"  validType="number">
         </div>
         <div class="fitem">
-            <label>母亲名字:</label>
-            <input name="mother_name" class="easyui-validatebox"  required="true">
+            <label>预招人数:</label>
+            <input name="number" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
-            <label>openId:</label>
-            <input name="openId" class="easyui-validatebox"  required="true">
+            <label>状态:</label>
+            <input name="status" class="easyui-validatebox"  required="true">
         </div>
         <div class="fitem">
-            <label>费用:</label>
-            <input name="cost" class="easyui-validatebox"  required="true">
+            <label>宣传图:</label>
+            <input name="image_url" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
-            <label>订单号:</label>
-            <input name="orderId" class="easyui-validatebox"  required="true">
+            <label>报名须知:</label>
+            <input name="information" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
-            <label>是否支付:</label>
-            <input name="payed" class="easyui-validatebox"  required="true">
+            <label>详情介绍:</label>
+            <input name="details" class="easyui-validatebox"  required="true">
         </div>
 
     </form>

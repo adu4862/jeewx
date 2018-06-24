@@ -156,7 +156,7 @@ public class OpenDataController {
 	 * @param weixinId : 微信原始ID
 	 * @return
 	 */
-	@RequestMapping(params = "getCourseList")
+	@RequestMapping(params = "getOrderList")
 	public void getUserInfo(HttpServletRequest request, HttpServletResponse response) {
 		Map<String, String> map = new HashMap<String, String>();
 		String openid = request.getParameter("openid");

@@ -8,219 +8,111 @@
     <link rel="icon" href="/control/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/control/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="http://my-photos.changs1992.cn/easyui.css">
+    <link rel="stylesheet" type="text/css" href="http://www.w3cschool.cc/try/jeasyui/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="http://my-photos.changs1992.cn/main.css">
-    <script src="http://my-photos.changs1992.cn/jquery.min.js"></script>
-    <%--<script type="text/javascript" src="http://my-photos.changs1992.cn/jquery.easyui.min.js"></script>--%>
+    <link rel="stylesheet" type="text/css" href="http://www.w3cschool.cc/try/jeasyui/themes/default/easyui.css">
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+
+    <script type="text/javascript" src="http://www.w3cschool.cc/try/jeasyui/jquery.easyui.min.js"></script>
     <%--<script type="text/javascript" src="http://my-photos.changs1992.cn/easyui-lang-zh_CN.js"></script>--%>
     <%--<script src="http://my-photos.changs1992.cn/sea.js"></script>--%>
 
 
 </head>
 <body class="m-innerbody easyui-layout layout panel-noscroll">
-<header>
-</header>
-<div class="panel window panel-htop" id="windowForInsert"
-     style="display: block; width: 500px; left: 525px; top: 100px; z-index: 9008; display: none">
-    <div class="panel-header panel-header-noborder window-header" style="width: 480px;">
-        <div class="panel-title">修改账号信息</div>
-        <div class="panel-tool"><a href="javascript:;" class="panel-tool-close"></a></div>
+<div>
+    <div id="dd" class="easyui-dialog" title="课程信息" style="width:600px;height:650px;padding:10px"
+         toolbar="#dlg-toolbar" buttons="#dlg-buttons" closed="true">
+
+        <div class="iform-inner">
+            <form id="modifyAccountForm" method="post">
+                <table class="m-form single-col" style=" height: 460px;width:400px;">
+
+                    <tr>
+                        <th><label>课程名:</label></th>
+                        <td><input class="easyui-textbox" name="resourse_name" style="height:26px; width:100%;"
+                                   data-options="validType:{email:null,maxLength:[32]},tipPosition:'bottom'"></td>
+                    </tr>
+                    <tr>
+                        <th><label>年级:</label></th>
+                        <td><input class="easyui-textbox" name="grade" style="height:26px; width:100%;"
+                                   data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                    </tr>
+                    <tr>
+                        <th><label>年龄跨度:</label></th>
+                        <td><input class="easyui-textbox" name="age" style="height:26px; width:100%;"
+                                   data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                    </tr>
+                    <tr>
+                        <th><label>时间:</label></th>
+                        <td><input class="easyui-textbox" name="time" style="height:26px; width:100%;"
+                                   data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                    </tr>
+                    <tr>
+                        <th><label>教室:</label></th>
+                        <td><input class="easyui-textbox" name="class_room" style="height:26px; width:100%;"
+                                   data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                    </tr>
+                    <tr>
+                        <th><label>老师:</label></th>
+                        <td><input class="easyui-textbox" name="teacher" style="height:26px; width:100%;"
+                                   data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                    </tr>
+                    <tr>
+                        <th><label>学费:</label></th>
+                        <td><input class="easyui-textbox" name="cost" style="height:26px; width:100%;"
+                                   data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                    </tr>
+                    <tr>
+                        <th><label>预招人数:</label></th>
+                        <td><input class="easyui-textbox" name="number" style="height:26px; width:100%;"
+                                   data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                    </tr>
+                    <tr>
+                        <th><label>状态:</label></th>
+                        <td><input class="easyui-textbox" name="status" style="height:26px; width:100%;"
+                                   data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                    </tr>
+                    <tr>
+                        <th><label>宣传图:</label></th>
+                        <td><input class="easyui-textbox" name="image_url" style="height:26px; width:100%;"
+                                   data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                    </tr>
+                    <tr>
+                        <th><label>报名须知:</label></th>
+                        <td><input class="easyui-textbox" name="info" style="height:26px; width:100%;"
+                                   data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                    </tr>
+                    <tr>
+                        <th><label>详情介绍:</label></th>
+                        <td><input class="easyui-textbox" name="details" style="height:26px; width:100%;"
+                                   data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
+                    </tr>
+                </table>
+
+            </form>
+
+        </div>
+
     </div>
-    <div id="dialog" class="m-iformbox panel-body panel-body-noborder window-body" title=""
-         style="width: 500px; height: 660px;">
 
-        <div class="m-iform">
-            <div class="iform-inner">
-                <form id="modifyAccountForm" method="post">
-                    <table class="m-form single-col" style=" height: 460px;width:400px;">
-
-                        <tr>
-                            <th><label>课程名:</label></th>
-                            <td><input class="easyui-textbox" name="loginEmail" style="height:26px; width:100%;"
-                                       data-options="validType:{email:null,maxLength:[32]},tipPosition:'bottom'"></td>
-                        </tr>
-                        <tr>
-                            <th><label>年级:</label></th>
-                            <td><input class="easyui-textbox" name="loginMobile" style="height:26px; width:100%;"
-                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
-                        </tr>
-                        <tr>
-                            <th><label>时间:</label></th>
-                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
-                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
-                        </tr>
-                        <tr>
-                            <th><label>教室:</label></th>
-                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
-                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
-                        </tr>
-                        <tr>
-                            <th><label>老师:</label></th>
-                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
-                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
-                        </tr>
-                        <tr>
-                            <th><label>学费:</label></th>
-                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
-                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
-                        </tr>
-                        <tr>
-                            <th><label>预招人数:</label></th>
-                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
-                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
-                        </tr>
-                        <tr>
-                            <th><label>状态:</label></th>
-                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
-                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
-                        </tr>
-                        <tr>
-                            <th><label>宣传图:</label></th>
-                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
-                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
-                        </tr>
-                        <tr>
-                            <th><label>报名须知:</label></th>
-                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
-                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
-                        </tr>
-                        <tr>
-                            <th><label>详情介绍:</label></th>
-                            <td><input class="easyui-textbox" name="idCardNo" style="height:26px; width:100%;"
-                                       data-options="validType:{idCardNo:null},tipPosition:'bottom'"></td>
-                        </tr>
-                    </table>
-
-                    <%--<input type="hidden" name="userType">--%>
-                    <%--<input type="hidden" name="userId">--%>
-                </form>
-
-            </div>
-
-        </div>
-        <div class="ifrom-btns"  style="width: 500px; height: 60px;">
-            <a href="javascript:void(0);" onclick="insertCourse()"  style="width: 50px; height: 60px;">保存</a>
-            <a href="javascript:void(0);" onclick="insertCourse()"  style="width: 50px; height: 60px;">取消</a>
-        </div>
-
+    <div id="dlg-buttons">
+        <table cellpadding="0" cellspacing="0" style="width:100%">
+            <tr>
+                <td>
+                    <img src="email.gif"/>
+                </td>
+                <td style="text-align:right">
+                    <a href="#" class="easyui-linkbutton" iconCls="icon-save" onclick="javascript:saveToDb()">保存</a>
+                    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dd').dialog('close')">关闭</a>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
 
-<div class="panel layout-panel layout-panel-north panel-htop" style="width: 1600px; left: 0px; top: 0px;">
-    <div data-options="region:'north',border:false" style="padding: 20px; width: 1400px; height: 106px;" title=""
-         class="panel-body panel-body-noheader panel-body-noborder layout-body">
-        <form id="searchForm">
-            <table class="m-form">
-                <tbody>
-                <tr>
-                    <th><label>账号姓名</label></th>
-                    <td>
-                        <input class="easyui-textbox textbox-f" style="height: 30px; width: 150px; display: none;"
-                               textboxname="realName"><span class="textbox" style="width: 148px; height: 28px;"><input
-                            id="_easyui_textbox_input1" type="text" class="textbox-text validatebox-text textbox-prompt"
-                            autocomplete="off" tabindex="" placeholder=""
-                            style="margin: 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 140px;"><input
-                            type="hidden" class="textbox-value" name="realName" value=""></span>
-                    </td>
-                    <th><label>账号ID</label></th>
-                    <td><input class="easyui-textbox textbox-f" style="height: 30px; width: 150px; display: none;"
-                               textboxname="userId"><span class="textbox" style="width: 148px; height: 28px;"><input
-                            id="_easyui_textbox_input2" type="text" class="textbox-text validatebox-text textbox-prompt"
-                            autocomplete="off" tabindex="" placeholder=""
-                            style="margin: 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 140px;"><input
-                            type="hidden" class="textbox-value" name="userId" value=""></span></td>
-                    <th><label>账号类型</label></th>
-                    <td>
-                        <select id="account_userType_id" class="easyui-combobox combobox-f combo-f textbox-f"
-                                style="height: 30px; width: 150px; display: none;" textboxname="userType"
-                                comboname="userType">
-                        </select><span class="textbox combo" style="width: 148px; height: 28px;"><span
-                            class="textbox-addon textbox-addon-right" style="right: 0px; top: 0px;"><a
-                            href="javascript:;" class="textbox-icon combo-arrow" icon-index="0" tabindex="-1"
-                            style="width: 18px; height: 28px;"></a></span><input id="_easyui_textbox_input10"
-                                                                                 type="text"
-                                                                                 class="textbox-text validatebox-text validatebox-readonly"
-                                                                                 autocomplete="off" tabindex=""
-                                                                                 readonly="readonly" placeholder=""
-                                                                                 style="margin: 0px 18px 0px 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 122px;"><input
-                            type="hidden" class="textbox-value" name="userType" value=""></span>
-                    </td>
-                    <th><label>注册日期</label></th>
-                    <td>
-                        <input id="register_time" data-options="editable: false"
-                               class="easyui-datebox datebox-f combo-f textbox-f"
-                               style="height: 30px; width: 150px; display: none;" textboxname="registerTime"
-                               comboname="registerTime"><span class="textbox combo datebox"
-                                                              style="width: 148px; height: 28px;"><span
-                            class="textbox-addon textbox-addon-right" style="right: 0px; top: 0px;"><a
-                            href="javascript:;" class="textbox-icon combo-arrow" icon-index="0" tabindex="-1"
-                            style="width: 18px; height: 28px;"></a></span><input id="_easyui_textbox_input7" type="text"
-                                                                                 class="textbox-text validatebox-text validatebox-readonly textbox-prompt"
-                                                                                 autocomplete="off" tabindex=""
-                                                                                 readonly="readonly" placeholder=""
-                                                                                 style="margin: 0px 18px 0px 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 122px;"><input
-                            type="hidden" class="textbox-value" name="registerTime" value=""></span>
-                    </td>
-                    <th><label>登录日期</label></th>
-                    <td>
-                        <input id="login_date" data-options="editable: false"
-                               class="easyui-datebox datebox-f combo-f textbox-f"
-                               style="height: 30px; width: 150px; display: none;" textboxname="loginDate"
-                               comboname="loginDate"><span class="textbox combo datebox"
-                                                           style="width: 148px; height: 28px;"><span
-                            class="textbox-addon textbox-addon-right" style="right: 0px; top: 0px;"><a
-                            href="javascript:;" class="textbox-icon combo-arrow" icon-index="0" tabindex="-1"
-                            style="width: 18px; height: 28px;"></a></span><input id="_easyui_textbox_input8" type="text"
-                                                                                 class="textbox-text validatebox-text validatebox-readonly textbox-prompt"
-                                                                                 autocomplete="off" tabindex=""
-                                                                                 readonly="readonly" placeholder=""
-                                                                                 style="margin: 0px 18px 0px 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 122px;"><input
-                            type="hidden" class="textbox-value" name="loginDate" value=""></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><label>登录名</label></th>
-                    <td><input class="easyui-textbox textbox-f" style="height: 30px; width: 150px; display: none;"
-                               textboxname="loginName"><span class="textbox" style="width: 148px; height: 28px;"><input
-                            id="_easyui_textbox_input3" type="text" class="textbox-text validatebox-text textbox-prompt"
-                            autocomplete="off" tabindex="" placeholder=""
-                            style="margin: 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 140px;"><input
-                            type="hidden" class="textbox-value" name="loginName" value=""></span></td>
-                    <th><label>是否锁定</label></th>
-                    <td>
-                        <select id="account_isLocked_id" class="easyui-combobox combobox-f combo-f textbox-f"
-                                style="height: 30px; width: 150px; display: none;" textboxname="isLocked"
-                                comboname="isLocked">
-                        </select><span class="textbox combo" style="width: 148px; height: 28px;"><span
-                            class="textbox-addon textbox-addon-right" style="right: 0px; top: 0px;"><a
-                            href="javascript:;" class="textbox-icon combo-arrow" icon-index="0" tabindex="-1"
-                            style="width: 18px; height: 28px;"></a></span><input id="_easyui_textbox_input9" type="text"
-                                                                                 class="textbox-text validatebox-text validatebox-readonly"
-                                                                                 autocomplete="off" tabindex=""
-                                                                                 readonly="readonly" placeholder=""
-                                                                                 style="margin: 0px 18px 0px 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 122px;"><input
-                            type="hidden" class="textbox-value" name="isLocked" value=""></span>
-                    </td>
-                    <th><label>所在机构</label></th>
-                    <td><input class="easyui-textbox textbox-f" style="height: 30px; width: 150px; display: none;"
-                               textboxname="orgName"><span class="textbox" style="width: 148px; height: 28px;"><input
-                            id="_easyui_textbox_input4" type="text" class="textbox-text validatebox-text textbox-prompt"
-                            autocomplete="off" tabindex="" placeholder=""
-                            style="margin: 0px; padding-top: 0px; padding-bottom: 0px; height: 28px; line-height: 28px; width: 140px;"><input
-                            type="hidden" class="textbox-value" name="orgName" value=""></span></td>
-                    <th>&nbsp;</th>
-                    <td>
-                        <a class="u-btn blue" id="search-btn"><i class="ico ico-search"></i>查询</a>
-                        <a class="u-btn white" id="reset-btn"><i class="ico ico-del"></i>清除</a>
-                    </td>
-                    <th>&nbsp;</th>
-                    <td>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </form>
-    </div>
-</div>
+
 <div class="panel layout-panel layout-panel-center panel-htop" style="width: 1600px; left: 0px; top: 146px;">
     <div data-options="region:'center',border:false" style="padding: 0px 20px 20px; width: 1400px; height: 1020px;"
          title="" class="panel-body panel-body-noheader panel-body-noborder layout-body">
@@ -805,7 +697,18 @@
         // alert("执行");
         // $("#windowForInsert").style.visibility = visible;
         // $("#windowForInsert").css("display","block");
-        $("#windowForInsert").toggle();
+        $("#dd").window('open');
+
+    }
+    function saveToDb() {
+        var vals = $("#modifyAccountForm").serialize();
+        $.post("modifyCourseController.do?addCourse", vals, function (data) {
+            // alert("前台取得值：\n" + vals+"\n后台取得值：\n"+data);
+            window.location.reload();
+            $('#dd').dialog('close');
+        });
+
+
     }
 </script>
 </html>

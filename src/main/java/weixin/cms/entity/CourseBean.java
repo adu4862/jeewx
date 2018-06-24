@@ -11,7 +11,7 @@ public class CourseBean {
     String cost;
     String number;
     String status;
-    String iamge_url;
+    String image_url;
     String information;
     String details;
 
@@ -95,12 +95,12 @@ public class CourseBean {
         this.status = status;
     }
 
-    public String getIamge_url() {
-        return iamge_url;
+    public String getimage_url() {
+        return image_url;
     }
 
-    public void setIamge_url(String iamge_url) {
-        this.iamge_url = iamge_url;
+    public void setimage_url(String image_url) {
+        this.image_url = image_url;
     }
 
     public String getInformation() {

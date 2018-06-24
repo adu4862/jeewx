@@ -118,7 +118,17 @@
 					    <value>cmsArticleController.do?datagridwx</value>
 					    <value>cmsArticleController.do?cmsArticleShow</value>
 					    <value>cmsController.do?goPage</value>
+						<!--课程-->
+						<value>modifyCourseController.do?updateCourse</value>
+						<value>modifyCourseController.do?getAllCourse</value>
 						<value>modifyCourseController.do?goCourse</value>
+						<value>modifyCourseController.do?removeCourse</value>
+						<!--订单-->
+						<value>modifyOrderController.do?getAllOrder</value>
+						<value>modifyOrderController.do?removeOrder</value>
+						<value>modifyOrderController.do?updateOrder</value>
+						<value>modifyOrderController.do?addOrder</value>
+
 					    <value>cmsController.do?getMenuList</value>
 					    <value>wechatController.do?wechat</value>
 					    <value>zpController.do?iscontinue</value>

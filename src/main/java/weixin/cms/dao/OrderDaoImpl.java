@@ -1,8 +1,7 @@
 package weixin.cms.dao;
 
-import jodd.util.TextUtil;
 import org.apache.commons.lang.StringUtils;
-import weixin.cms.entity.CourseBean;
+import weixin.cms.entity.OrderBean;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,9 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CourseDaoImpl implements CourseDao {
+public class OrderDaoImpl implements OrderDao {
     @Override
-    public List<Map<String, Object>> getCourseList(String sqlString) {
+    public List<Map<String, Object>> getOrderList(String sqlString) {
         List<Map<String, Object>> list = new ArrayList<>();
         Connection conn = null;
         String sql;
@@ -31,7 +30,7 @@ public class CourseDaoImpl implements CourseDao {
             // Statement里面带有很多方法，比如executeUpdate可以实现插入，更新和删除等
             Statement stmt = conn.createStatement();
             StringBuilder sbSql = new StringBuilder();
-            sbSql.append("select * from tb_course ");
+            sbSql.append("select * from tb_register ");
             if (StringUtils.isNotEmpty(sqlString)) {
                 sbSql.append(sqlString);
             }
@@ -68,7 +67,7 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public boolean updateCourse(String courseId,String sqlString) {
+    public boolean updateOrder(String orderId, String sqlString) {
         Connection conn = null;
         String sql;
 
@@ -86,7 +85,7 @@ public class CourseDaoImpl implements CourseDao {
             // Statement里面带有很多方法，比如executeUpdate可以实现插入，更新和删除等
             Statement stmt = conn.createStatement();
 
-            sql = "UPDATE  tb_course "+sqlString+"WHERE course_id =  "+courseId;
+            sql = "UPDATE  tb_register "+sqlString+"WHERE orderId =  \'"+ orderId+"\'";
             System.out.println(sql);
             int result = stmt.executeUpdate(sql);
             return result > 0;
@@ -105,7 +104,7 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public boolean insertCourse(CourseBean bean) {
+    public boolean insertOrder(OrderBean bean) {
         Connection conn = null;
         String sql;
 
@@ -123,11 +122,14 @@ public class CourseDaoImpl implements CourseDao {
             // Statement里面带有很多方法，比如executeUpdate可以实现插入，更新和删除等
             Statement stmt = conn.createStatement();
 
-            sql = "INSERT  INTO tb_course (subject,class_name,time,classroom,age,teacher,cost,number,status,image_url,information,details) values" +
-                    "('"+bean.getSubject()+"','"+bean.getClass_name()+"','"
-                    +bean.getTime()+"','"+bean.getClassroom()
-                    +"','"+bean.getAge()+"','"+bean.getTeacher()+"','"+bean.getCost()
-                    +"','"+bean.getNumber()+"','"+bean.getStatus()+"','"+bean.getimage_url()+"','"+bean.getInformation()+"','"+bean.getDetails()
+            sql = "INSERT  INTO tb_register (course_id,name,age,sex,born,school,grade,hobby,phone,address,father_name," +
+                    "father_phone,openId,cost,mother_name,mother_phone,orderId,payed) values" +
+                    "('"+ bean.getCourse_id()+"','"+bean.getName()+"','"
+                    +bean.getAge()+"','"+bean.getSex()
+                    +"','"+bean.getBorn()+"','"+bean.getSchool()+"','"+bean.getGrade()
+                    +"','"+bean.getHobby()+"','"+bean.getPhone()+"','"+bean.getAddress()+"','"+bean.getFather_name()
+                    +"','"+bean.getFather_phone()+"','"+bean.getOpenId()+"','"+bean.getCost()+"','"+bean.getMother_name()
+                    +"','"+bean.getMother_phone()+"','"+bean.getOrderId()+"','"+bean.isPayed()
                     +"')";
             System.out.println(sql);
 
@@ -145,10 +147,12 @@ public class CourseDaoImpl implements CourseDao {
             }
         }
         return false;
+
     }
 
+
     @Override
-    public boolean deleteCourse(String courseId) {
+    public boolean deleteOrder(String orderId) {
         Connection conn = null;
         String sql;
 
@@ -166,7 +170,7 @@ public class CourseDaoImpl implements CourseDao {
             // Statement里面带有很多方法，比如executeUpdate可以实现插入，更新和删除等
             Statement stmt = conn.createStatement();
 
-            sql = "DELETE FROM   tb_course WHERE course_id =  "+courseId;
+            sql = "DELETE FROM   tb_register WHERE orderId =  \'"+ orderId+"\'";
             System.out.println(sql);
             int result = stmt.executeUpdate(sql);
             return result > 0;

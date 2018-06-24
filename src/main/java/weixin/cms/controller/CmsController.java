@@ -119,7 +119,7 @@ public class CmsController extends BaseController {
 			return modelAndView;
 		}
 		if (weixinCmsSiteEntity!=null &&CmsConstant.CMS_COURSE.equals(page)){
-			ModelAndView modelAndView = new ModelAndView("courseManage");
+			ModelAndView modelAndView = new ModelAndView("courseManage2");
 			List<Map<String, Object>> courseList = new CourseDaoImpl().getCourseList("");
 			modelAndView.addObject("courseList", courseList);
 			modelAndView.addObject("frameUrl", "modifyCourseController.do?goCourse&courseId=");
