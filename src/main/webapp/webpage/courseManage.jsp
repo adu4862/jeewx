@@ -93,11 +93,13 @@
                     <%--<input type="hidden" name="userType">--%>
                     <%--<input type="hidden" name="userId">--%>
                 </form>
-                <div class="ifrom-btns">
-                    <a class="u-btn blue btn_save" href="javascript:void(0);" onclick="insertCourse()">保存</a>
-                    <a class="u-btn white btn_cancel" href="javascript:void(0);" onclick="insertCourse()">取消</a>
-                </div>
+
             </div>
+
+        </div>
+        <div class="ifrom-btns"  style="width: 500px; height: 60px;">
+            <a href="javascript:void(0);" onclick="insertCourse()"  style="width: 50px; height: 60px;">保存</a>
+            <a href="javascript:void(0);" onclick="insertCourse()"  style="width: 50px; height: 60px;">取消</a>
         </div>
 
     </div>
