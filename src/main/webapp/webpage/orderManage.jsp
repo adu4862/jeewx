@@ -9,9 +9,12 @@
     <meta name="keywords" content="jquery,ui,easy,easyui,web">
     <meta name="description" content="easyui help you build your web page easily!">
     <title>订单管理</title>
-    <link rel="stylesheet" type="text/css" href="http://www.w3cschool.cc/try/jeasyui/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="http://www.w3cschool.cc/try/jeasyui/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="http://www.w3cschool.cc/try/jeasyui/demo/demo.css">
+    <%--<link href="plug-in/login/css/zice.style.css" rel="stylesheet" type="text/css" />--%>
+    <link rel="stylesheet" type="text/css" href="themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="webpage/demo.css">
+
+
     <style type="text/css">
         #fm {
             margin: 0;
@@ -38,6 +41,10 @@
     </style>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
     <script type="text/javascript" src="http://www.w3cschool.cc/try/jeasyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script type="text/javascript">
         var url;
 
@@ -114,6 +121,15 @@
         function toExcel(){
             $("#dg").datagrid('toExcel',"订单统计表.xls");
         }
+        function searchOrder() {
+            $('#dg').datagrid('load',{
+                course_id: $('#course_id').val(),
+                name: $('#name').val(),
+                subject: $('#subject').val()
+            });
+
+
+        }
 
         function removeUser() {
             var row = $('#dg').datagrid('getSelected');
@@ -135,34 +151,40 @@
             }
         }
     </script>
+
+
 </head>
 <body>
 
 
 <table id="dg" title="订单管理" class="easyui-datagrid" style="width:1400px;height:750px"
        url="modifyOrderController.do?getAllOrder"
+       pageSize="20"
        toolbar="#toolbar" pagination="true"
        rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
     <tr>
-        <th field="course_id" width="50">订单ID</th>
+        <th field="course_id" width="50">课程ID</th>
+        <th field="subject" width="50">报名班级</th>
         <th field="name" width="50">姓名</th>
-        <th field="age" width="50">年龄</th>
+       
         <th field="sex" width="50">性别</th>
-        <th field="born" width="50">出生</th>
-        <th field="school" width="50">学校</th>
+
+        <%--<th field="born" width="50">出生年月</th>--%>
+        <th field="age" width="50">年龄</th>
+        <th field="school" width="50">就读学校</th>
         <th field="grade" width="50">年级</th>
         <th field="hobby" width="50">兴趣</th>
         <th field="phone" width="50">电话</th>
         <th field="address" width="50">地址</th>
-        <th field="father_name" width="50">父亲名字</th>
-        <th field="father_phone" width="50">父亲电话</th>
-        <th field="mother_name" width="50">母亲名字</th>
-        <th field="mother_phone" width="50">母亲电话</th>
-        <th field="openId" width="50">openId</th>
+        <th field="father_name" width="50">家长名字</th>
+        <th field="father_phone" width="50">家长电话</th>
+
+        <%--<th field="mother_phone" width="50">母亲电话</th>--%>
+        <%--<th field="openId" width="50">openId</th>--%>
         <th field="cost" width="50">费用</th>
         <th field="orderId" width="50">订单号</th>
-        <th field="payed" width="50">是否支付</th>
+        <%--<th field="payed" width="50">是否支付</th>--%>
     </tr>
     </thead>
 </table>
@@ -171,11 +193,22 @@
     <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">编辑</a>
     <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">删除</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="toExcel()">导出EXCEL</a>
+
+        <div id="tb" style="padding:3px">
+            <span>课程ID:</span>
+            <input id="course_id" style="line-height:26px;border:1px solid #ccc">
+            <span>姓名:</span>
+            <input id="name" style="line-height:26px;border:1px solid #ccc">
+            <span>报名班级:</span>
+            <input id="subject" style="line-height:26px;border:1px solid #ccc">
+            <span>日期查询:</span>
+            <input type="text" name="datefilter" value="" />
+            <a href="#" class="easyui-linkbutton" plain="true"  iconCls="icon-search" onclick="searchOrder() ">查询</a>
+        </div>
 </div>
 
 <div id="dlg" class="easyui-dialog" style="width:600px;height:280px;padding:10px 20px"
      closed="true" buttons="#dlg-buttons">
-    <div class="ftitle">User Information</div>
     <form id="fm" method="post" novalidate>
         <div class="fitem">
             <label>姓名:</label>
@@ -190,11 +223,11 @@
             <input name="sex" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
-            <label>出生:</label>
+            <label>出生年月:</label>
             <input name="born" class="easyui-validatebox" validType="true">
         </div>
         <div class="fitem">
-            <label>学校:</label>
+            <label>就读学校:</label>
             <input name="school" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
@@ -214,11 +247,11 @@
             <input name="address" class="easyui-validatebox"  required="true">
         </div>
         <div class="fitem">
-            <label>父亲名字:</label>
+            <label>家长名字:</label>
             <input name="father_name" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
-            <label>父亲电话:</label>
+            <label>家长电话:</label>
             <input name="father_phone" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
@@ -245,9 +278,67 @@
     </form>
 </div>
 <div id="dlg-buttons">
-    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">Save</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">保存</a>
     <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
-       onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
+       onclick="javascript:$('#dlg').dialog('close')">取消</a>
 </div>
 </body>
+<script type="text/javascript">
+    $(function() {
+        var myoptions = {
+            applyClass: 'btn-sm btn-success',
+            cancelClass: 'btn-sm btn-default',
+            locale: {
+                applyLabel: '确认',
+                cancelLabel: '清空',
+                fromLabel: '起始时间',
+                toLabel: '结束时间',
+                customRangeLabel: '自定义',
+                firstDay: 1,
+                daysOfWeek: ['日', '一', '二', '三', '四', '五', '六'],
+                monthNames: ['一月', '二月', '三月', '四月', '五月', '六月',
+                    '七月', '八月', '九月', '十月', '十一月', '十二月'],
+            },
+            ranges: {
+
+                //'最近1小时': [moment().subtract('hours',1), moment()],
+                '今日': [moment(), moment()],
+                '昨日': [moment().subtract(1, 'days').startOf('day'), moment().subtract(1, 'days').endOf('day')],
+                '最近7日': [moment().subtract(6,'days'), moment()],
+                '最近30日': [moment().subtract(29, 'days'), moment()],
+                '本月': [moment().startOf("month"), moment().endOf("month")],
+                '上个月': [moment().subtract(1, "month").startOf("month"), moment().subtract(1, "month").endOf("month")]
+            },
+            opens: 'right',    // 日期选择框的弹出位置
+            separator: '-',
+            showWeekNumbers: false,     // 是否显示第几周
+            format: 'MM/DD/YYYY'
+        }
+        $('input[name="datefilter"]').daterangepicker(myoptions);
+
+        // $('input[name="datefilter"]').daterangepicker({
+        //     autoUpdateInput: false,
+        //     locale: {
+        //         cancelLabel: 'Clear'
+        //     }
+        // });
+
+        $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+            $(this).val(picker.startDate + ' - ' + picker.endDate);
+            // alert(picker.startDate+"\n"+picker.endDate);
+        });
+
+        $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+            $('#dg').datagrid('load',{
+                course_id: $('#course_id').val(),
+                name: $('#name').val(),
+                subject: $('#subject').val(),
+                startDate:picker.startDate,
+                endDate:picker.endDate
+            });
+        });
+
+    });
+</script>
 </html>

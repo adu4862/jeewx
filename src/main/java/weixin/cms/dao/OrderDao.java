@@ -12,4 +12,5 @@ public interface OrderDao {
     boolean updateOrder(String courseId, String sqlString);
     boolean insertOrder(OrderBean courseBean);
     boolean deleteOrder(String courseId);
+    int getOrderCounts();
 }

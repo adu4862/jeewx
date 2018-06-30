@@ -60,7 +60,7 @@ public class ModifyCourseController {
                              @RequestParam String number,
                              @RequestParam String status,
                              @RequestParam String image_url,
-                             @RequestParam String information,
+                             @RequestParam(required = false) String information,
                              @RequestParam String details,
                              @RequestParam String age,
                              @RequestParam String class_name) {
@@ -95,7 +95,7 @@ public class ModifyCourseController {
                           @RequestParam String number,
                           @RequestParam String status,
                           @RequestParam String image_url,
-                          @RequestParam String information,
+                          @RequestParam(required = false) String information,
                           @RequestParam String details,
                           @RequestParam String age,
                           @RequestParam String class_name) {

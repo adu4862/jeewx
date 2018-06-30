@@ -122,7 +122,7 @@ public class CmsController extends BaseController {
 			ModelAndView modelAndView = new ModelAndView("courseManage2");
 			List<Map<String, Object>> courseList = new CourseDaoImpl().getCourseList("");
 			modelAndView.addObject("courseList", courseList);
-			modelAndView.addObject("frameUrl", "modifyCourseController.do?goCourse&courseId=");
+//			modelAndView.addObject("frameUrl", "modifyCourseController.do?goCourse&courseId=");
 
 			return modelAndView;
 		}

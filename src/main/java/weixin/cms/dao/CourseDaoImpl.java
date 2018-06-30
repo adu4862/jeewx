@@ -18,7 +18,7 @@ public class CourseDaoImpl implements CourseDao {
         String sql;
 
         String url = "jdbc:mysql://localhost:3306/weixin_db?"
-                + "user=root&password=root&useUnicode=true&characterEncoding=utf8";
+                + "user=yanglong&password=Willyang4862!&useUnicode=true&characterEncoding=utf8";
 
         try {
             // 之所以要使用下面这条语句，是因为要使用MySQL的驱动，所以我们要把它驱动起来，
@@ -73,7 +73,7 @@ public class CourseDaoImpl implements CourseDao {
         String sql;
 
         String url = "jdbc:mysql://localhost:3306/weixin_db?"
-                + "user=root&password=root&useUnicode=true&characterEncoding=utf8";
+                + "user=yanglong&password=Willyang4862!&useUnicode=true&characterEncoding=utf8";
 
         try {
             // 之所以要使用下面这条语句，是因为要使用MySQL的驱动，所以我们要把它驱动起来，
@@ -110,7 +110,7 @@ public class CourseDaoImpl implements CourseDao {
         String sql;
 
         String url = "jdbc:mysql://localhost:3306/weixin_db?"
-                + "user=root&password=root&useUnicode=true&characterEncoding=utf8";
+                + "user=yanglong&password=Willyang4862!&useUnicode=true&characterEncoding=utf8";
 
         try {
             // 之所以要使用下面这条语句，是因为要使用MySQL的驱动，所以我们要把它驱动起来，
@@ -153,7 +153,7 @@ public class CourseDaoImpl implements CourseDao {
         String sql;
 
         String url = "jdbc:mysql://localhost:3306/weixin_db?"
-                + "user=root&password=root&useUnicode=true&characterEncoding=utf8";
+                + "user=yanglong&password=Willyang4862!&useUnicode=true&characterEncoding=utf8";
 
         try {
             // 之所以要使用下面这条语句，是因为要使用MySQL的驱动，所以我们要把它驱动起来，

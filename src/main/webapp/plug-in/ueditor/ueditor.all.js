@@ -1993,7 +1993,7 @@ var domUtils = dom.domUtils = {
      * @grammar UE.dom.domUtils.findParents(node)  => Array  //返回一个祖先节点数组集合，不包含自身
      * @grammar UE.dom.domUtils.findParents(node,includeSelf)  => Array  //返回一个祖先节点数组集合，includeSelf指定是否包含自身
      * @grammar UE.dom.domUtils.findParents(node,includeSelf,filterFn)  => Array  //返回一个祖先节点数组集合，filterFn指定过滤条件，返回true的node将被选取
-     * @grammar UE.dom.domUtils.findParents(node,includeSelf,filterFn,closerFirst)  => Array  //返回一个祖先节点数组集合，closerFirst为true的话，node的直接父亲节点是数组的第0个
+     * @grammar UE.dom.domUtils.findParents(node,includeSelf,filterFn,closerFirst)  => Array  //返回一个祖先节点数组集合，closerFirst为true的话，node的直接家长节点是数组的第0个
      */
 
     /**
@@ -8522,7 +8522,7 @@ var filterWord = UE.filterWord = function () {
         },
 
         /**
-         * 获取和当前节点有相同父亲节点的前一个节点
+         * 获取和当前节点有相同家长节点的前一个节点
          * @method previousSibling
          * @return { UE.uNode } 返回前一个节点
          * @example
@@ -8541,7 +8541,7 @@ var filterWord = UE.filterWord = function () {
         },
 
         /**
-         * 获取和当前节点有相同父亲节点的后一个节点
+         * 获取和当前节点有相同家长节点的后一个节点
          * @method nextSibling
          * @return { UE.uNode } 返回后一个节点,找不到返回null
          * @example
@@ -9012,7 +9012,7 @@ var htmlparser = UE.htmlparser = function (htmlstr,ignoreBlank) {
         }
 
         parent.children.push(elm);
-        //如果是自闭合节点返回父亲节点
+        //如果是自闭合节点返回家长节点
         return  dtd.$empty[tagName] ? parent : elm
     }
 
@@ -10783,7 +10783,7 @@ UE.plugins['font'] = function () {
 
             mergeWithParent(span);
             if(browser.ie && browser.version > 8 ){
-                //拷贝父亲们的特别的属性,这里只做背景颜色的处理
+                //拷贝家长们的特别的属性,这里只做背景颜色的处理
                 var parent = domUtils.findParent(span,function(n){return n.tagName == 'SPAN' && /background-color/.test(n.style.cssText)});
                 if(parent && !/background-color/.test(span.style.cssText)){
                     span.style.backgroundColor = parent.style.backgroundColor;
@@ -11951,7 +11951,7 @@ UE.plugins['paragraph'] = function() {
 //            var startNode = editor.selection.getStart(),
 //                parents;
 //            if ( startNode ) {
-//                //查找所有的是block的父亲节点
+//                //查找所有的是block的家长节点
 //                parents = domUtils.findParents( startNode, true, block, true );
 //                for ( var i = 0,ci; ci = parents[i++]; ) {
 //                    if ( ci.getAttribute( 'dir' ) ) {

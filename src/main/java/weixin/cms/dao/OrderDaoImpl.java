@@ -17,7 +17,7 @@ public class OrderDaoImpl implements OrderDao {
         String sql;
 
         String url = "jdbc:mysql://localhost:3306/weixin_db?"
-                + "user=root&password=root&useUnicode=true&characterEncoding=utf8";
+                + "user=yanglong&password=Willyang4862!&useUnicode=true&characterEncoding=utf8";
 
         try {
             // 之所以要使用下面这条语句，是因为要使用MySQL的驱动，所以我们要把它驱动起来，
@@ -72,7 +72,7 @@ public class OrderDaoImpl implements OrderDao {
         String sql;
 
         String url = "jdbc:mysql://localhost:3306/weixin_db?"
-                + "user=root&password=root&useUnicode=true&characterEncoding=utf8";
+                + "user=yanglong&password=Willyang4862!&useUnicode=true&characterEncoding=utf8";
 
         try {
             // 之所以要使用下面这条语句，是因为要使用MySQL的驱动，所以我们要把它驱动起来，
@@ -109,7 +109,7 @@ public class OrderDaoImpl implements OrderDao {
         String sql;
 
         String url = "jdbc:mysql://localhost:3306/weixin_db?"
-                + "user=root&password=root&useUnicode=true&characterEncoding=utf8";
+                + "user=yanglong&password=Willyang4862!&useUnicode=true&characterEncoding=utf8";
 
         try {
             // 之所以要使用下面这条语句，是因为要使用MySQL的驱动，所以我们要把它驱动起来，
@@ -157,7 +157,7 @@ public class OrderDaoImpl implements OrderDao {
         String sql;
 
         String url = "jdbc:mysql://localhost:3306/weixin_db?"
-                + "user=root&password=root&useUnicode=true&characterEncoding=utf8";
+                + "user=yanglong&password=Willyang4862!&useUnicode=true&characterEncoding=utf8";
 
         try {
             // 之所以要使用下面这条语句，是因为要使用MySQL的驱动，所以我们要把它驱动起来，
@@ -186,5 +186,54 @@ public class OrderDaoImpl implements OrderDao {
             }
         }
         return false;
+    }
+
+    @Override
+    public int getOrderCounts() {
+        Connection conn = null;
+        String sql;
+
+        String url = "jdbc:mysql://localhost:3306/weixin_db?"
+                + "user=yanglong&password=Willyang4862!&useUnicode=true&characterEncoding=utf8";
+
+        try {
+            // 之所以要使用下面这条语句，是因为要使用MySQL的驱动，所以我们要把它驱动起来，
+            // 可以通过Class.forName把它加载进去，也可以通过初始化来驱动起来，下面三种形式都可以
+            Class.forName("com.mysql.jdbc.Driver");// 动态加载mysql驱动
+
+
+            // 一个Connection代表一个数据库连接
+            conn = DriverManager.getConnection(url);
+            // Statement里面带有很多方法，比如executeUpdate可以实现插入，更新和删除等
+            Statement stmt = conn.createStatement();
+            StringBuilder sbSql = new StringBuilder();
+            sbSql.append("select count(*) from tb_register ");
+
+
+
+            ResultSet rs = stmt.executeQuery(sbSql.toString());// executeQuery会返回结果的集合，否则返回空值
+            System.out.println(sbSql.toString());
+//            ResultSetMetaData md = rs.getMetaData(); //获得结果集结构信息,元数据
+//            int columnCount = md.getColumnCount();   //获得列数
+
+//            ResultSet rs = sta.executeQuery(sql);
+            int rowCount = 0;
+            while(rs.next()){
+                 rowCount = rs.getInt(1);
+            }
+            return rowCount;
+
+
+        } catch (Exception e) {
+            System.out.println("MySQL操作错误");
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
     }
 }
