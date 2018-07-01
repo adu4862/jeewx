@@ -39,12 +39,13 @@
             width: 80px;
         }
     </style>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+    <script type="text/javascript" src="webpage/jquery.min.js"></script>
+    <%--<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>--%>
     <script type="text/javascript" src="http://www.w3cschool.cc/try/jeasyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <%--<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>--%>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     <script type="text/javascript">
         var url;
 
@@ -60,7 +61,7 @@
             if (row) {
                 $('#dlg').dialog('open').dialog('setTitle', 'Edit User');
                 $('#fm').form('load', row);
-                url = 'modifyOrderController.do?updateOrder&orderId='+row.orderId;
+                url = 'modifyOrderController.do?updateOrder&orderId=' + row.orderId;
             }
         }
 
@@ -86,30 +87,37 @@
         }
 
         $.extend($.fn.datagrid.methods, {
-            toExcel: function(jq, filename){
-                return jq.each(function(){
+            toExcel: function (jq, filename) {
+                return jq.each(function () {
                     var uri = 'data:application/vnd.ms-excel;base64,'
-                        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
-                        , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
-                        , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+                        ,
+                        template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+                        , base64 = function (s) {
+                            return window.btoa(unescape(encodeURIComponent(s)))
+                        }
+                        , format = function (s, c) {
+                            return s.replace(/{(\w+)}/g, function (m, p) {
+                                return c[p];
+                            })
+                        }
 
                     var alink = $('<a style="display:none"></a>').appendTo('body');
                     var view = $(this).datagrid('getPanel').find('div.datagrid-view');
 
                     var table = view.find('div.datagrid-view2 table.datagrid-btable').clone();
                     var tbody = table.find('>tbody');
-                    view.find('div.datagrid-view1 table.datagrid-btable>tbody>tr').each(function(index){
-                        $(this).clone().children().prependTo(tbody.children('tr:eq('+index+')'));
+                    view.find('div.datagrid-view1 table.datagrid-btable>tbody>tr').each(function (index) {
+                        $(this).clone().children().prependTo(tbody.children('tr:eq(' + index + ')'));
                     });
 
                     var head = view.find('div.datagrid-view2 table.datagrid-htable').clone();
                     var hbody = head.find('>tbody');
-                    view.find('div.datagrid-view1 table.datagrid-htable>tbody>tr').each(function(index){
-                        $(this).clone().children().prependTo(hbody.children('tr:eq('+index+')'));
+                    view.find('div.datagrid-view1 table.datagrid-htable>tbody>tr').each(function (index) {
+                        $(this).clone().children().prependTo(hbody.children('tr:eq(' + index + ')'));
                     });
                     hbody.prependTo(table);
 
-                    var ctx = { worksheet: name || 'Worksheet', table: table.html()||'' };
+                    var ctx = {worksheet: name || 'Worksheet', table: table.html() || ''};
                     alink[0].href = uri + base64(format(template, ctx));
                     alink[0].download = filename;
                     alink[0].click();
@@ -118,14 +126,18 @@
             }
         });
 
-        function toExcel(){
-            $("#dg").datagrid('toExcel',"订单统计表.xls");
+        function toExcel() {
+            $("#dg").datagrid('toExcel', "订单统计表.xls");
         }
+
         function searchOrder() {
-            $('#dg').datagrid('load',{
+            $('#dg').datagrid('load', {
                 course_id: $('#course_id').val(),
                 name: $('#name').val(),
-                subject: $('#subject').val()
+                subject: $('#subject').val(),
+                startDate: $('#startDate').val(),
+                endDate: $('#endDate').val()
+
             });
 
 
@@ -167,7 +179,7 @@
         <th field="course_id" width="50">课程ID</th>
         <th field="subject" width="50">报名班级</th>
         <th field="name" width="50">姓名</th>
-       
+
         <th field="sex" width="50">性别</th>
 
         <%--<th field="born" width="50">出生年月</th>--%>
@@ -192,19 +204,21 @@
     <%--<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">新增</a>--%>
     <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">编辑</a>
     <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">删除</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="toExcel()">导出EXCEL</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="toExcel()">导出EXCEL</a>
 
-        <div id="tb" style="padding:3px">
-            <span>课程ID:</span>
-            <input id="course_id" style="line-height:26px;border:1px solid #ccc">
-            <span>姓名:</span>
-            <input id="name" style="line-height:26px;border:1px solid #ccc">
-            <span>报名班级:</span>
-            <input id="subject" style="line-height:26px;border:1px solid #ccc">
-            <span>日期查询:</span>
-            <input type="text" name="datefilter" value="" />
-            <a href="#" class="easyui-linkbutton" plain="true"  iconCls="icon-search" onclick="searchOrder() ">查询</a>
-        </div>
+    <div id="tb" style="padding:3px">
+        <span>课程ID:</span>
+        <input id="course_id" style="line-height:26px;border:1px solid #ccc">
+        <span>姓名:</span>
+        <input id="name" style="line-height:26px;border:1px solid #ccc">
+        <span>报名班级:</span>
+        <input id="subject" style="line-height:26px;border:1px solid #ccc">
+        <span>日期查询:</span>
+        <input type="text" name="datefilter" value=""/>
+        <input type="text" name="startDate" id="startDate">
+        <input type="text" name="endDate" id="endDate">
+        <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="searchOrder() ">查询</a>
+    </div>
 </div>
 
 <div id="dlg" class="easyui-dialog" style="width:600px;height:280px;padding:10px 20px"
@@ -236,7 +250,7 @@
         </div>
         <div class="fitem">
             <label>兴趣:</label>
-            <input name="hobby"  validType="number">
+            <input name="hobby" validType="number">
         </div>
         <div class="fitem">
             <label>电话:</label>
@@ -244,7 +258,7 @@
         </div>
         <div class="fitem">
             <label>地址:</label>
-            <input name="address" class="easyui-validatebox"  required="true">
+            <input name="address" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
             <label>家长名字:</label>
@@ -256,23 +270,23 @@
         </div>
         <div class="fitem">
             <label>母亲名字:</label>
-            <input name="mother_name" class="easyui-validatebox"  required="true">
+            <input name="mother_name" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
             <label>openId:</label>
-            <input name="openId" class="easyui-validatebox"  required="true">
+            <input name="openId" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
             <label>费用:</label>
-            <input name="cost" class="easyui-validatebox"  required="true">
+            <input name="cost" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
             <label>订单号:</label>
-            <input name="orderId" class="easyui-validatebox"  required="true">
+            <input name="orderId" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
             <label>是否支付:</label>
-            <input name="payed" class="easyui-validatebox"  required="true">
+            <input name="payed" class="easyui-validatebox" required="true">
         </div>
 
     </form>
@@ -284,7 +298,7 @@
 </div>
 </body>
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         var myoptions = {
             applyClass: 'btn-sm btn-success',
             cancelClass: 'btn-sm btn-default',
@@ -304,7 +318,7 @@
                 //'最近1小时': [moment().subtract('hours',1), moment()],
                 '今日': [moment(), moment()],
                 '昨日': [moment().subtract(1, 'days').startOf('day'), moment().subtract(1, 'days').endOf('day')],
-                '最近7日': [moment().subtract(6,'days'), moment()],
+                '最近7日': [moment().subtract(6, 'days'), moment()],
                 '最近30日': [moment().subtract(29, 'days'), moment()],
                 '本月': [moment().startOf("month"), moment().endOf("month")],
                 '上个月': [moment().subtract(1, "month").startOf("month"), moment().subtract(1, "month").endOf("month")]
@@ -323,20 +337,37 @@
         //     }
         // });
 
-        $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-            $(this).val(picker.startDate + ' - ' + picker.endDate);
-            // alert(picker.startDate+"\n"+picker.endDate);
-        });
+        $('input[name="datefilter"]').on('apply.daterangepicker', function (ev, picker) {
+            // $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+            $(this).val(picker.startDate + ' -' + picker.endDate);
+            $('#startDate').val(picker.startDate + '');
+            $('#endDate').val('' + picker.endDate);
+            searchOrder();
+            // $.ajax({
+            //     url: 'modifyOrderController.do?getAllOrder',
+            //     type: 'POST',
+            //     dataType: 'json',
+            //     cache: false, //上传文件不需要缓存
+            //     data: {
+            //             course_id: $('#course_id').val(),
+            //             name: $('#name').val(),
+            //             subject: $('#subject').val(),
+            //             startDate:picker.startDate,
+            //             endDate:picker.endDate
+            //     },
+            //     processData: false, // 告诉jQuery不要去处理发送的数据
+            //     contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+            //     success: function (data) {
+            //
+            //
+            //     },
+            //     error: function (data) {
+            //     }
+            // })
 
-        $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
-            $('#dg').datagrid('load',{
-                course_id: $('#course_id').val(),
-                name: $('#name').val(),
-                subject: $('#subject').val(),
-                startDate:picker.startDate,
-                endDate:picker.endDate
-            });
+        });
+        $('input[name="datefilter"]').on('cancel.daterangepicker', function (ev, picker) {
+
         });
 
     });
