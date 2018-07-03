@@ -36,68 +36,133 @@ public class ModifyOrderController {
         String input_rows = request.getParameter("rows");
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
+        String class_type = request.getParameter("class_type");
         rows = (input_rows == null) ? 10 : Integer.parseInt(input_rows);
         offset = (page - 1) * rows;
         String sql = " where payed=1  limit " + offset + "," + rows;
-        if (StringUtil.isEmpty(startDate)) {
-            //无日期筛选
-            if (StringUtil.isNotEmpty(name)) {
-                //name不为空
-                if (StringUtil.isNotEmpty(course_id) && StringUtil.isEmpty(subject)) {
-                    //条件查询为course_id
-                    sql =" where payed=1 and course_id = " + course_id + " and name = \'" + name +"\' limit " + offset + "," + rows;
-                } else if (StringUtil.isEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
-                    //subject
-                    sql =  " where payed=1 and subject = \'" + subject + "\' and name = \'" + name+ "\' limit " + offset + "," + rows;
-                } else if (StringUtil.isNotEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
-                    sql =  " where payed=1 and subject = \'" + subject + "\' and course_id = " + course_id + " and name = \'" + name+ "\' limit " + offset + "," + rows;
-                } else if (StringUtil.isEmpty(course_id) && StringUtil.isEmpty(subject)) {
-                    sql =  " where payed=1 and name = \'" + name+ "\' limit " + offset + "," + rows;
+        if ("0".equals(class_type)) {
+            //无类型筛选
+            if (StringUtil.isEmpty(startDate)) {
+                //无日期筛选
+                if (StringUtil.isNotEmpty(name)) {
+                    //name不为空
+                    if (StringUtil.isNotEmpty(course_id) && StringUtil.isEmpty(subject)) {
+                        //条件查询为course_id
+                        sql =" where payed=1 and course_id = " + course_id + " and name = \'" + name +"\' limit " + offset + "," + rows;
+                    } else if (StringUtil.isEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
+                        //subject
+                        sql =  " where payed=1 and subject = \'" + subject + "\' and name = \'" + name+ "\' limit " + offset + "," + rows;
+                    } else if (StringUtil.isNotEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
+                        sql =  " where payed=1 and subject = \'" + subject + "\' and course_id = " + course_id + " and name = \'" + name+ "\' limit " + offset + "," + rows;
+                    } else if (StringUtil.isEmpty(course_id) && StringUtil.isEmpty(subject)) {
+                        sql =  " where payed=1 and name = \'" + name+ "\' limit " + offset + "," + rows;
+                    }
+                }else{
+                    //name为空
+                    if (StringUtil.isNotEmpty(course_id) && StringUtil.isEmpty(subject)) {
+                        //条件查询为course_id
+                        sql =" where payed=1 and course_id = " + course_id + " limit " + offset + "," + rows;
+                    } else if (StringUtil.isEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
+                        //subject
+                        sql =  " where payed=1 and subject = \'" + subject + "\' limit " + offset + "," + rows;
+                    } else if (StringUtil.isNotEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
+                        sql =  " where payed=1 and subject = \'" + subject + "\' and course_id = " + course_id + " limit " + offset + "," + rows;
+                    }
                 }
-            }else{
-                //name为空
-                if (StringUtil.isNotEmpty(course_id) && StringUtil.isEmpty(subject)) {
-                    //条件查询为course_id
-                    sql =" where payed=1 and course_id = " + course_id + " limit " + offset + "," + rows;
-                } else if (StringUtil.isEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
-                    //subject
-                    sql =  " where payed=1 and subject = \'" + subject + "\' limit " + offset + "," + rows;
-                } else if (StringUtil.isNotEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
-                    sql =  " where payed=1 and subject = \'" + subject + "\' and course_id = " + course_id + " limit " + offset + "," + rows;
+
+            } else {
+                //有日期筛选
+                sql = " where payed=1 "+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" limit " + offset + "," + rows;
+                if (StringUtil.isNotEmpty(name)) {
+                    //name不为空
+                    if (StringUtil.isNotEmpty(course_id) && StringUtil.isEmpty(subject)) {
+                        //条件查询为course_id
+                        sql =" where payed=1 and course_id = " + course_id+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate + " and name = \'" + name +"\' limit " + offset + "," + rows;
+                    } else if (StringUtil.isEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
+                        //subject
+                        sql =  " where payed=1 "+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and subject = \'" + subject + "\' and name = \'" + name+ "\' limit " + offset + "," + rows;
+                    } else if (StringUtil.isNotEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
+                        sql =  " where payed=1"+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and subject = \'" + subject + "\' and course_id = " + course_id + " and name = \'" + name+ "\' limit " + offset + "," + rows;
+                    } else if (StringUtil.isEmpty(course_id) && StringUtil.isEmpty(subject)) {
+                        sql =  " where payed=1"+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and name = \'" + name+ "\' limit " + offset + "," + rows;
+                    }
+                }else{
+                    //name为空
+                    if (StringUtil.isNotEmpty(course_id) && StringUtil.isEmpty(subject)) {
+                        //条件查询为course_id
+                        sql =" where payed=1"+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and course_id = " + course_id + " limit " + offset + "," + rows;
+                    } else if (StringUtil.isEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
+                        //subject
+                        sql =  " where payed=1"+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and subject = \'" + subject + "\' limit " + offset + "," + rows;
+                    } else if (StringUtil.isNotEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
+                        sql =  " where payed=1"+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and subject = \'" + subject + "\' and course_id = " + course_id + " limit " + offset + "," + rows;
+                    }
                 }
             }
-
-        } else {
-            //有日期筛选
-            sql = " where payed=1 "+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" limit " + offset + "," + rows;
-            if (StringUtil.isNotEmpty(name)) {
-                //name不为空
-                if (StringUtil.isNotEmpty(course_id) && StringUtil.isEmpty(subject)) {
-                    //条件查询为course_id
-                    sql =" where payed=1 and course_id = " + course_id+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate + " and name = \'" + name +"\' limit " + offset + "," + rows;
-                } else if (StringUtil.isEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
-                    //subject
-                    sql =  " where payed=1 "+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and subject = \'" + subject + "\' and name = \'" + name+ "\' limit " + offset + "," + rows;
-                } else if (StringUtil.isNotEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
-                    sql =  " where payed=1"+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and subject = \'" + subject + "\' and course_id = " + course_id + " and name = \'" + name+ "\' limit " + offset + "," + rows;
-                } else if (StringUtil.isEmpty(course_id) && StringUtil.isEmpty(subject)) {
-                    sql =  " where payed=1"+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and name = \'" + name+ "\' limit " + offset + "," + rows;
+        }else{
+            //有类型筛选
+            sql = " where payed=1  and class_type = "+class_type +" limit " + offset + "," + rows;
+            //and class_type = "+class_type +"
+            if (StringUtil.isEmpty(startDate)) {
+                //无日期筛选
+                if (StringUtil.isNotEmpty(name)) {
+                    //name不为空
+                    if (StringUtil.isNotEmpty(course_id) && StringUtil.isEmpty(subject)) {
+                        //条件查询为course_id
+                        sql =" where payed=1 and class_type = "+class_type +" and course_id = " + course_id + " and name = \'" + name +"\' limit " + offset + "," + rows;
+                    } else if (StringUtil.isEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
+                        //subject
+                        sql =  " where payed=1 and class_type = "+class_type +" and subject = \'" + subject + "\' and name = \'" + name+ "\' limit " + offset + "," + rows;
+                    } else if (StringUtil.isNotEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
+                        sql =  " where payed=1 and class_type = "+class_type +" and subject = \'" + subject + "\' and course_id = " + course_id + " and name = \'" + name+ "\' limit " + offset + "," + rows;
+                    } else if (StringUtil.isEmpty(course_id) && StringUtil.isEmpty(subject)) {
+                        sql =  " where payed=1 and class_type = "+class_type +" and name = \'" + name+ "\' limit " + offset + "," + rows;
+                    }
+                }else{
+                    //name为空
+                    if (StringUtil.isNotEmpty(course_id) && StringUtil.isEmpty(subject)) {
+                        //条件查询为course_id
+                        sql =" where payed=1 and class_type = "+class_type +" and course_id = " + course_id + " limit " + offset + "," + rows;
+                    } else if (StringUtil.isEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
+                        //subject
+                        sql =  " where payed=1 and class_type = "+class_type +" and subject = \'" + subject + "\' limit " + offset + "," + rows;
+                    } else if (StringUtil.isNotEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
+                        sql =  " where payed=1 and class_type = "+class_type +" and subject = \'" + subject + "\' and course_id = " + course_id + " limit " + offset + "," + rows;
+                    }
                 }
-            }else{
-                //name为空
-                if (StringUtil.isNotEmpty(course_id) && StringUtil.isEmpty(subject)) {
-                    //条件查询为course_id
-                    sql =" where payed=1"+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and course_id = " + course_id + " limit " + offset + "," + rows;
-                } else if (StringUtil.isEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
-                    //subject
-                    sql =  " where payed=1"+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and subject = \'" + subject + "\' limit " + offset + "," + rows;
-                } else if (StringUtil.isNotEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
-                    sql =  " where payed=1"+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and subject = \'" + subject + "\' and course_id = " + course_id + " limit " + offset + "," + rows;
+
+            } else {
+                //有日期筛选
+                sql = " where payed=1 and class_type = "+class_type +" "+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" limit " + offset + "," + rows;
+                if (StringUtil.isNotEmpty(name)) {
+                    //name不为空
+                    if (StringUtil.isNotEmpty(course_id) && StringUtil.isEmpty(subject)) {
+                        //条件查询为course_id
+                        sql =" where payed=1 and class_type = "+class_type +" and course_id = " + course_id+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate + " and name = \'" + name +"\' limit " + offset + "," + rows;
+                    } else if (StringUtil.isEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
+                        //subject
+                        sql =  " where payed=1 and class_type = "+class_type +" "+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and subject = \'" + subject + "\' and name = \'" + name+ "\' limit " + offset + "," + rows;
+                    } else if (StringUtil.isNotEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
+                        sql =  " where payed=1 and class_type ="+class_type +" "+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and subject = \'" + subject + "\' and course_id = " + course_id + " and name = \'" + name+ "\' limit " + offset + "," + rows;
+                    } else if (StringUtil.isEmpty(course_id) && StringUtil.isEmpty(subject)) {
+                        sql =  " where payed=1 and class_type = "+class_type +""+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and name = \'" + name+ "\' limit " + offset + "," + rows;
+                    }
+                }else{
+                    //name为空
+                    if (StringUtil.isNotEmpty(course_id) && StringUtil.isEmpty(subject)) {
+                        //条件查询为course_id
+                        sql =" where payed=1 and class_type = "+class_type +""+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and course_id = " + course_id + " limit " + offset + "," + rows;
+                    } else if (StringUtil.isEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
+                        //subject
+                        sql =  " where payed=1 and class_type = "+class_type +"  "+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and subject = \'" + subject + "\' limit " + offset + "," + rows;
+                    } else if (StringUtil.isNotEmpty(course_id) && StringUtil.isNotEmpty(subject)) {
+                        sql =  " where payed=1 and class_type = "+class_type +""+" AND order_time BETWEEN "+ startDate  +" AND "+ endDate+" and subject = \'" + subject + "\' and course_id = " + course_id + " limit " + offset + "," + rows;
+                    }
                 }
             }
-
-
         }
+
+
 
 
 

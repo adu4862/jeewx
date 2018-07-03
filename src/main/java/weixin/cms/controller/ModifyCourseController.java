@@ -98,6 +98,7 @@ public class ModifyCourseController {
                           @RequestParam(required = false) String information,
                           @RequestParam String details,
                           @RequestParam String age,
+                          @RequestParam int class_type,
                           @RequestParam String class_name) {
         CourseBean courseBean = new CourseBean();
         courseBean.setAge(age);
@@ -112,6 +113,7 @@ public class ModifyCourseController {
         courseBean.setTeacher(teacher);
         courseBean.setTime(time);
         courseBean.setimage_url(image_url);
+        courseBean.setClass_type(class_type);
         boolean b = new CourseDaoImpl().insertCourse(courseBean);
         ResponseEntity responseEntity = new ResponseEntity();
         rend(response, b, responseEntity);

@@ -14,6 +14,15 @@ public class CourseBean {
     String image_url;
     String information;
     String details;
+    int class_type;
+
+    public int getClass_type() {
+        return class_type;
+    }
+
+    public void setClass_type(int class_type) {
+        this.class_type = class_type;
+    }
 
     public String getCourse_id() {
         return course_id;

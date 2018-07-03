@@ -131,13 +131,15 @@
         }
 
         function searchOrder() {
+            var val = $('#class_type').combobox("getValue");   // 获取值
+            // alert(val);
             $('#dg').datagrid('load', {
                 course_id: $('#course_id').val(),
                 name: $('#name').val(),
                 subject: $('#subject').val(),
                 startDate: $('#startDate').val(),
-                endDate: $('#endDate').val()
-
+                endDate: $('#endDate').val(),
+                class_type :val
             });
 
 
@@ -207,6 +209,16 @@
     <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="toExcel()">导出EXCEL</a>
 
     <div id="tb" style="padding:3px">
+        <span>班级分类:</span>
+        <select class="easyui-combobox" id="class_type" name="class_type"  style="line-height:26px;border:1px solid #ccc">
+            <option value="0">全部 </option>
+            <option value="1">艺术类(上午)</option>
+            <option value="2"> 艺术类(下午)</option>
+            <option value="3"> 文化类（上午）</option>
+            <option value="4">文化类(下午)</option>
+        </select>
+
+
         <span>课程ID:</span>
         <input id="course_id" style="line-height:26px;border:1px solid #ccc">
         <span>姓名:</span>
@@ -215,8 +227,8 @@
         <input id="subject" style="line-height:26px;border:1px solid #ccc">
         <span>日期查询:</span>
         <input type="text" name="datefilter" value=""/>
-        <input type="text" name="startDate" id="startDate">
-        <input type="text" name="endDate" id="endDate">
+        <input type="hidden" name="startDate" id="startDate">
+        <input type="hidden" name="endDate" id="endDate">
         <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="searchOrder() ">查询</a>
     </div>
 </div>

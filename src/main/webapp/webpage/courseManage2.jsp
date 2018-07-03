@@ -344,6 +344,7 @@
     <thead>
     <tr>
         <th field="course_id" width="50">课程ID</th>
+        <th field="class_type_name" width="50">班级类型</th>
         <th field="subject" width="50">课程名</th>
         <th field="class_name" width="50">年级</th>
         <th field="age" width="50">年龄跨度</th>
@@ -370,6 +371,15 @@
      closed="true" buttons="#dlg-buttons">
     <div class="ftitle"></div>
     <form id="fm" method="post" novalidate>
+        <div class="fitem">
+            <label>班级分类:</label>
+            <select class="easyui-combobox" id="class_type" name="class_type"  style="line-height:26px;border:1px solid #ccc">
+                <option value="1">艺术类(上午)</option>
+                <option value="2"> 艺术类(下午)</option>
+                <option value="3"> 文化类（上午）</option>
+                <option value="4">文化类(下午)</option>
+            </select>
+        </div>
         <div class="fitem">
             <label>课程名:</label>
             <input name="subject" class="easyui-validatebox" required="true">

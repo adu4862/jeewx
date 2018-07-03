@@ -18,7 +18,7 @@ public class CourseDaoImpl implements CourseDao {
         String sql;
 
         String url = "jdbc:mysql://localhost:3306/weixin_db?"
-                + "user=root&password=root&useUnicode=true&characterEncoding=utf8";
+                + "user=yanglong&password=Willyang4862!&useUnicode=true&characterEncoding=utf8";
 
         try {
             // 之所以要使用下面这条语句，是因为要使用MySQL的驱动，所以我们要把它驱动起来，
@@ -51,6 +51,22 @@ public class CourseDaoImpl implements CourseDao {
 
                 }
                 list.add(rowData);
+                int class_type = (int) rowData.get("class_type");
+                switch (class_type) {
+                    case 1:
+                        rowData.put("class_type_name", "艺术类(上午)");
+                        break;
+                    case 2:
+                        rowData.put("class_type_name", " 艺术类(下午)");
+                        break;
+                    case 3:
+                        rowData.put("class_type_name", "文化类（上午）");
+                        break;
+                    case 4:
+                        rowData.put("class_type_name", "文化类(下午)");
+                        break;
+
+                }
 
             }
 
@@ -73,7 +89,7 @@ public class CourseDaoImpl implements CourseDao {
         String sql;
 
         String url = "jdbc:mysql://localhost:3306/weixin_db?"
-                + "user=root&password=root&useUnicode=true&characterEncoding=utf8";
+                + "user=yanglong&password=Willyang4862!&useUnicode=true&characterEncoding=utf8";
 
         try {
             // 之所以要使用下面这条语句，是因为要使用MySQL的驱动，所以我们要把它驱动起来，
@@ -110,7 +126,7 @@ public class CourseDaoImpl implements CourseDao {
         String sql;
 
         String url = "jdbc:mysql://localhost:3306/weixin_db?"
-                + "user=root&password=root&useUnicode=true&characterEncoding=utf8";
+                + "user=yanglong&password=Willyang4862!&useUnicode=true&characterEncoding=utf8";
 
         try {
             // 之所以要使用下面这条语句，是因为要使用MySQL的驱动，所以我们要把它驱动起来，
@@ -123,11 +139,12 @@ public class CourseDaoImpl implements CourseDao {
             // Statement里面带有很多方法，比如executeUpdate可以实现插入，更新和删除等
             Statement stmt = conn.createStatement();
 
-            sql = "INSERT  INTO tb_course (subject,class_name,time,classroom,age,teacher,cost,number,status,image_url,information,details) values" +
+            sql = "INSERT  INTO tb_course (subject,class_name,time,classroom,age,teacher,cost,number,status,image_url,information,details,class_type) values" +
                     "('"+bean.getSubject()+"','"+bean.getClass_name()+"','"
                     +bean.getTime()+"','"+bean.getClassroom()
                     +"','"+bean.getAge()+"','"+bean.getTeacher()+"','"+bean.getCost()
-                    +"','"+bean.getNumber()+"','"+bean.getStatus()+"','"+bean.getimage_url()+"','"+bean.getInformation()+"','"+bean.getDetails()
+                    +"','"+bean.getNumber()+"','"+bean.getStatus()+"','"+bean.getimage_url()
+                    +"','"+bean.getInformation()+"','"+bean.getDetails()+"','"+bean.getClass_type()
                     +"')";
             System.out.println(sql);
 
@@ -153,7 +170,7 @@ public class CourseDaoImpl implements CourseDao {
         String sql;
 
         String url = "jdbc:mysql://localhost:3306/weixin_db?"
-                + "user=root&password=root&useUnicode=true&characterEncoding=utf8";
+                + "user=yanglong&password=Willyang4862!&useUnicode=true&characterEncoding=utf8";
 
         try {
             // 之所以要使用下面这条语句，是因为要使用MySQL的驱动，所以我们要把它驱动起来，
