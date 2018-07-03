@@ -225,11 +225,12 @@
         <input id="name" style="line-height:26px;border:1px solid #ccc">
         <span>报名班级:</span>
         <input id="subject" style="line-height:26px;border:1px solid #ccc">
+        <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="searchOrder() ">查询</a>
         <span>日期查询:</span>
         <input type="text" name="datefilter" value=""/>
         <input type="hidden" name="startDate" id="startDate">
         <input type="hidden" name="endDate" id="endDate">
-        <a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="searchOrder() ">查询</a>
+
     </div>
 </div>
 
@@ -350,8 +351,8 @@
         // });
 
         $('input[name="datefilter"]').on('apply.daterangepicker', function (ev, picker) {
-            // $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-            $(this).val(picker.startDate + ' -' + picker.endDate);
+            $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+            // $(this).val(picker.startDate + ' -' + picker.endDate);
             $('#startDate').val(picker.startDate + '');
             $('#endDate').val('' + picker.endDate);
             searchOrder();

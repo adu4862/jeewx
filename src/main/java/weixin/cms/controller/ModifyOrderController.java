@@ -1,6 +1,7 @@
 package weixin.cms.controller;
 
 import com.google.gson.Gson;
+import org.apache.commons.lang.StringUtils;
 import org.jeecgframework.core.util.StringUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,7 +41,7 @@ public class ModifyOrderController {
         rows = (input_rows == null) ? 10 : Integer.parseInt(input_rows);
         offset = (page - 1) * rows;
         String sql = " where payed=1  limit " + offset + "," + rows;
-        if ("0".equals(class_type)) {
+        if ("0".equals(class_type)|| StringUtils.isEmpty(class_type)) {
             //无类型筛选
             if (StringUtil.isEmpty(startDate)) {
                 //无日期筛选

@@ -112,6 +112,7 @@ public class ModifyCourseController {
         courseBean.setSubject(subject);
         courseBean.setTeacher(teacher);
         courseBean.setTime(time);
+        image_url = "http://www.fjshhdzx.cn/weisite/" + image_url;
         courseBean.setimage_url(image_url);
         courseBean.setClass_type(class_type);
         boolean b = new CourseDaoImpl().insertCourse(courseBean);
