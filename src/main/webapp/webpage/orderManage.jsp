@@ -173,7 +173,8 @@
 
 <table id="dg" title="订单管理" class="easyui-datagrid" style="width:1400px;height:750px"
        url="modifyOrderController.do?getAllOrder"
-       pageSize="20"
+       pageSize="50"
+       pageList="[50, 100, 200, 300, 500, 1000]"
        toolbar="#toolbar" pagination="true"
        rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
@@ -311,6 +312,7 @@
 </div>
 </body>
 <script type="text/javascript">
+
     $(function () {
         var myoptions = {
             applyClass: 'btn-sm btn-success',
