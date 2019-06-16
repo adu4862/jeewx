@@ -7,9 +7,9 @@
 
 <link rel="icon" href="/control/favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="/control/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" type="text/css" href="http://my-photos.changs1992.cn/easyui.css">
-<link rel="stylesheet" type="text/css" href="http://my-photos.changs1992.cn/main.css">
-<script src="http://my-photos.changs1992.cn/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://qiniu1.huanxinchao.com/easyui.css">
+<link rel="stylesheet" type="text/css" href="http://qiniu1.huanxinchao.com/main.css">
+<script src="http://qiniu1.huanxinchao.com/jquery.min.js"></script>
 <!DOCTYPE html>
 <html>
 <header>
