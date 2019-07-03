@@ -10,7 +10,7 @@
         <jeewx-api.version>1.2.0-SNAPSHOT</jeewx-api.version>
 
 		<!-- 主要依赖库的版本定义 -->
-		<spring.version>3.1.1.RELEASE</spring.version>
+		<spring.version>3.2.15.RELEASE</spring.version>
 		<hibernate.version>4.1.0.Final</hibernate.version>
 		<hibernate-common-annotations.version>4.0.2.Final</hibernate-common-annotations.version>
 		<hibernate-jpa.version>1.0.1.Final</hibernate-jpa.version>
@@ -856,7 +856,7 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version> 
 				<configuration>
-					<port>8088</port>
+					<port>8087</port>
 					<path>/jeewx</path>
 					<uriEncoding>UTF-8</uriEncoding>
 				</configuration>

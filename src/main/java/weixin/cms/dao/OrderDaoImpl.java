@@ -152,7 +152,7 @@ public class OrderDaoImpl implements OrderDao {
 
 
     @Override
-    public boolean deleteOrder(String orderId) {
+    public boolean deleteOrder(String orderIdList) {
         Connection conn = null;
         String sql;
 
@@ -169,8 +169,18 @@ public class OrderDaoImpl implements OrderDao {
             conn = DriverManager.getConnection(url);
             // Statement里面带有很多方法，比如executeUpdate可以实现插入，更新和删除等
             Statement stmt = conn.createStatement();
+            StringBuffer ids = new StringBuffer();
+            String[] orderIds = orderIdList.split(",");
+            for (int i = 0; i < orderIds.length; i++) {
+                if (i == orderIds.length - 1) {
+                    ids.append("'" + orderIds[i] + "'");
+                } else {
+                    ids.append("'"+orderIds[i]+"',");
+                }
 
-            sql = "DELETE FROM   tb_register WHERE orderId =  \'"+ orderId+"\'";
+            }
+
+            sql = "DELETE FROM   tb_register WHERE orderId IN ("+ids.toString()+")" ;
             System.out.println(sql);
             int result = stmt.executeUpdate(sql);
             return result > 0;

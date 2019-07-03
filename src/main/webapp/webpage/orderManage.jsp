@@ -41,7 +41,7 @@
     </style>
     <script type="text/javascript" src="webpage/jquery.min.js"></script>
     <%--<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>--%>
-    <script type="text/javascript" src="http://www.w3cschool.cc/try/jeasyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="http://qiniu1.huanxinchao.com/jquery.easyui.min.js"></script>
     <%--<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>--%>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -146,11 +146,21 @@
         }
 
         function removeUser() {
-            var row = $('#dg').datagrid('getSelected');
+            var row = $('#dg').datagrid('getSelections');
+
+            var orderIdList = ''
+            for(var i = 0;i<row.length;i++){
+                if (i ===row.length-1){
+                    orderIdList = orderIdList+row[i].orderId
+                }else {
+                    orderIdList = orderIdList+row[i].orderId+","
+                }
+            }
+            console.log(orderIdList)
             if (row) {
                 $.messager.confirm('确认', '是否确认删除该订单?', function (r) {
                     if (r) {
-                        $.post('modifyOrderController.do?removeOrder', {orderId: row.orderId}, function (result) {
+                        $.post('modifyOrderController.do?removeOrder', {orderIdList: orderIdList}, function (result) {
                             if (result.success) {
                                 $('#dg').datagrid('reload');	// reload the user data
                             } else {
@@ -176,9 +186,10 @@
        pageSize="50"
        pageList="[50, 100, 200, 300, 500, 1000]"
        toolbar="#toolbar" pagination="true"
-       rownumbers="true" fitColumns="true" singleSelect="true">
+       rownumbers="true" fitColumns="true" singleSelect="false">
     <thead>
     <tr>
+        <th field="ck" checkbox="true"></th>
         <th field="course_id" width="50">课程ID</th>
         <th field="subject" width="50">报名班级</th>
         <th field="name" width="50">姓名</th>

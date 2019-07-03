@@ -103,6 +103,26 @@ public class CmsController extends BaseController {
 	public ModelAndView goPage(HttpServletRequest request,
 			HttpServletResponse response, @RequestParam String page) {
 
+//		站点信息
+//		WeixinCmsSiteEntity  weixinCmsSiteEntity = weixinCmsSiteService.findUniqueByProperty(WeixinCmsSiteEntity.class, "accountid", params.get("accountid"));
+		//站点模板样式
+		//拦截订单界面,课程管理界面
+		if (CmsConstant.CMS_ORDER.equals(page)){
+			ModelAndView modelAndView = new ModelAndView("orderManage");
+
+			return modelAndView;
+		}
+		if (CmsConstant.CMS_COURSE.equals(page)){
+			ModelAndView modelAndView = new ModelAndView("courseManage2");
+			List<Map<String, Object>> courseList = new CourseDaoImpl().getCourseList("");
+			modelAndView.addObject("courseList", courseList);
+//			modelAndView.addObject("frameUrl", "modifyCourseController.do?goCourse&courseId=");
+
+			return modelAndView;
+		}
+
+
+
 		Map<String, String> params = paramsToMap(request);
 		//---------------------------------------------------------------------------------------------------------
 		//获取站点的网站样式风格 模块根路径
@@ -113,19 +133,7 @@ public class CmsController extends BaseController {
 		WeixinCmsSiteEntity  weixinCmsSiteEntity = weixinCmsSiteService.findUniqueByProperty(WeixinCmsSiteEntity.class, "accountid", params.get("accountid"));
 		//站点模板样式
 		//拦截订单界面,课程管理界面
-		if (weixinCmsSiteEntity!=null &&CmsConstant.CMS_ORDER.equals(page)){
-			ModelAndView modelAndView = new ModelAndView("orderManage");
 
-			return modelAndView;
-		}
-		if (weixinCmsSiteEntity!=null &&CmsConstant.CMS_COURSE.equals(page)){
-			ModelAndView modelAndView = new ModelAndView("courseManage2");
-			List<Map<String, Object>> courseList = new CourseDaoImpl().getCourseList("");
-			modelAndView.addObject("courseList", courseList);
-//			modelAndView.addObject("frameUrl", "modifyCourseController.do?goCourse&courseId=");
-
-			return modelAndView;
-		}
 		WeixinCmsStyleEntity weixinCmsStyleEntity = null;
 		//模板名字 add by liuqiang
 		String templateName = null;
@@ -153,7 +161,7 @@ public class CmsController extends BaseController {
 			CmsDataCollectI cmsDataCollect = (CmsDataCollectI) dataCollectContent.get(page);
 			cmsDataCollect.collect(params);
 		}
-		
+
 		//将所有容器的数据访问，加上前缀cmsData，注意大小写
 		String html = cmsFreemarkerHelper.parseTemplate(page + CmsConstant.CMS_TEMPL_INDEX,CmsDataContent.loadContent());
 		response.setContentType("text/html");

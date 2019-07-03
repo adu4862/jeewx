@@ -46,7 +46,7 @@
         }
     </style>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
-    <script type="text/javascript" src="http://www.w3cschool.cc/try/jeasyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="http://qiniu1.huanxinchao.com/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/export.js"></script>
     <script type="text/javascript">
         var url;
@@ -140,6 +140,7 @@
 
         function removeUser() {
             var row = $('#dg').datagrid('getSelected');
+            console.log(row)
             if (row) {
                 $.messager.confirm('确认', '是否确认删除该课程?', function (r) {
                     if (r) {

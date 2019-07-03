@@ -185,9 +185,9 @@ public class ModifyOrderController {
 
     @RequestMapping(params = "removeOrder")
     public void removeOrder(HttpServletRequest request,
-                            HttpServletResponse response, @RequestParam String orderId) {
+                            HttpServletResponse response, @RequestParam String orderIdList) {
 
-        boolean b = new OrderDaoImpl().deleteOrder(orderId);
+        boolean b = new OrderDaoImpl().deleteOrder(orderIdList);
         ResponseEntity responseEntity = new ResponseEntity();
         rend(response, b, responseEntity);
 
