@@ -10,7 +10,7 @@
         <jeewx-api.version>1.2.0-SNAPSHOT</jeewx-api.version>
 
 		<!-- 主要依赖库的版本定义 -->
-		<spring.version>3.2.15.RELEASE</spring.version>
+		<spring.version>5.3.18</spring.version>
 		<hibernate.version>4.1.0.Final</hibernate.version>
 		<hibernate-common-annotations.version>4.0.2.Final</hibernate-common-annotations.version>
 		<hibernate-jpa.version>1.0.1.Final</hibernate-jpa.version>
